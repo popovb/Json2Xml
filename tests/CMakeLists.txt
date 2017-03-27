@@ -42,3 +42,16 @@ target_link_libraries(converter_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(option_test
+  option_test.cpp
+  ${SourceDir}/Option.cpp
+  )
+
+target_link_libraries(option_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
