@@ -1,5 +1,6 @@
 #include <Json2Xml/Converter.hpp>
 #include <Json2Xml/Option.hpp>
+#include <Json2Xml/NullHandler.hpp>
 #include <fstream>
 #include <gtest/gtest.h>
 
@@ -18,4 +19,13 @@ TEST(converter, test_02)
      Option O;
      Converter C(O);
      ASSERT_TRUE(true);
+}
+
+TEST(converter, test_03)
+{
+     using namespace json2xml;
+     std::ifstream in("first_test_05.json");
+     Converter C;
+     NullHandler NH;
+     ASSERT_TRUE(C.convert(NH));
 }
