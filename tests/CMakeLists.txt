@@ -30,3 +30,15 @@ target_link_libraries(one_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(converter_test
+  converter_test.cpp
+  )
+
+target_link_libraries(converter_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
