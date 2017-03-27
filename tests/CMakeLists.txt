@@ -57,3 +57,15 @@ target_link_libraries(option_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(handler_test
+  handler_test.cpp
+  )
+
+target_link_libraries(handler_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
