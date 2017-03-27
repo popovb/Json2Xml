@@ -6,21 +6,12 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#include "Option.hpp"
+#include <Json2Xml/Converter.hpp>
 
-#ifndef __Converter_hpp__
-#define __Converter_hpp__
-
-namespace json2xml {
 //////////////////////////////////////////////////////////////////
-     class Converter {
-
-     public:
-	  Converter(const Option = Option());
-
-     private:
-	  const Option option;
-     };
-//////////////////////////////////////////////////////////////////
+json2xml::Converter::Converter(const Option o):
+     option(o)
+{
+     return;
 }
-#endif // __Converter_hpp__
+//////////////////////////////////////////////////////////////////
