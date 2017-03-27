@@ -34,6 +34,8 @@ target_link_libraries(one_test
 ##################################################################
 add_executable(converter_test
   converter_test.cpp
+  ${SourceDir}/Option.cpp
+  ${SourceDir}/Converter.cpp
   )
 
 target_link_libraries(converter_test
