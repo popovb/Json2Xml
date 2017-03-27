@@ -6,4 +6,5 @@ gtest
 one_test
 option_test
 converter_test
+handler_test
 
