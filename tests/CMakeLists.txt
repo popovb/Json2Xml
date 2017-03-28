@@ -72,3 +72,18 @@ target_link_libraries(handler_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(converthandler_test
+  converthandler_test.cpp
+  ${SourceDir}/Option.cpp
+  ${SourceDir}/ConvertHandler.cpp
+  )
+
+target_link_libraries(converthandler_test
+  simple_json
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################

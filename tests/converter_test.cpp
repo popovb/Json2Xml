@@ -27,5 +27,5 @@ TEST(converter, test_03)
      std::ifstream in("first_test_05.json");
      Converter C;
      NullHandler NH;
-     ASSERT_TRUE(C.convert(NH));
+     ASSERT_TRUE(C.convert(in, NH));
 }
