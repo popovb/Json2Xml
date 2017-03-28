@@ -8,8 +8,8 @@
 
 #include "String.hpp"
 
-#ifndef __Handler_hpp__
-#define __Handler_hpp__
+#ifndef __json2xml_Handler_hpp__
+#define __json2xml_Handler_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
@@ -24,4 +24,4 @@ namespace json2xml {
      };
 //////////////////////////////////////////////////////////////////
 }
-#endif // __Handler_hpp__
+#endif // __json2xml_Handler_hpp__
