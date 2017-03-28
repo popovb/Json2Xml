@@ -1,23 +1,25 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(CurrentDir   "${CMAKE_CURRENT_SOURCE_DIR}")
-set(RootDir      "${CurrentDir}/..")
-set(IncludeDir   "${RootDir}/include")
-set(SourceDir    "${RootDir}/src")
+set(CurrentDir    "${CMAKE_CURRENT_SOURCE_DIR}")
+set(RootDir       "${CurrentDir}/..")
+set(IncludeDir    "${RootDir}/include")
+set(SourceDir     "${RootDir}/src")
+set(SimpleJsonDir "${SourceDir}/SimpleJson")
 
 link_directories   ("${CurrentDir}/gtest")
 include_directories(
+  "${SourceDir}"
   "${IncludeDir}"
   )
 
 set(CMAKE_CXX_FLAGS "-g -W -Wall -Wextra -std=c++1y")
 
 aux_source_directory("${SourceDir}" sources)
+aux_source_directory("${SimpleJsonDir}" SJD)
 
-#add_library(xml
-#  ${sd}
-#  ${xd}
-#  )
+add_library(simple_json
+  ${SJD}
+  )
 
 ##################################################################
 add_executable(one_test
@@ -39,6 +41,7 @@ add_executable(converter_test
   )
 
 target_link_libraries(converter_test
+  simple_json
   gtest_main
   gtest
   pthread
