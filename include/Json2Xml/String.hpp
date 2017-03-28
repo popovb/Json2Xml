@@ -8,12 +8,12 @@
 
 #include <string>
 
-#ifndef __String_hpp__
-#define __String_hpp__
+#ifndef __json2xml_String_hpp__
+#define __json2xml_String_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
      using String = std::string;
 //////////////////////////////////////////////////////////////////
 }
-#endif // __String_hpp__
+#endif // __json2xml_String_hpp__
