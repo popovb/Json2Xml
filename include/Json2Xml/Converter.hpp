@@ -8,6 +8,7 @@
 
 #include "Option.hpp"
 #include "Handler.hpp"
+#include <istream>
 
 #ifndef __Converter_hpp__
 #define __Converter_hpp__
@@ -19,7 +20,7 @@ namespace json2xml {
      public:
 	  Converter(const Option = Option());
 
-	  bool convert(Handler&);
+	  bool convert(std::istream&, Handler&);
 
      private:
 	  const Option option;

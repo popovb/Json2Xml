@@ -7,11 +7,19 @@
 //
 
 #include <Json2Xml/Converter.hpp>
+#include "SimpleJson/Reader.hpp"
+#include "ConvertHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
 json2xml::Converter::Converter(const Option o):
      option(o)
 {
      return;
+}
+
+bool json2xml::Converter::convert(std::istream& i, Handler& h) {
+     simple_json::Reader R;
+     ConvertHandler CH(h, option);
+     return R.Parse(i, CH);
 }
 //////////////////////////////////////////////////////////////////
