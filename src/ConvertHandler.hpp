@@ -40,6 +40,7 @@ namespace json2xml {
 
 	  using TagName = String;
 	  TagName new_tag_name();
+	  TagName new_tag_name(const simple_json::key_t);
      };
 //////////////////////////////////////////////////////////////////
 }

@@ -42,16 +42,12 @@ void json2xml::ConvertHandler::ArrayEnd() {
      //
 }
 
-void json2xml::ConvertHandler::Key(const simple_json::key_t) {
-     //
-     //TODO
-     //
+void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
+     handler.OpenTag(new_tag_name(k));
 }
 
-void json2xml::ConvertHandler::Value(const simple_json::value_t) {
-     //
-     //TODO
-     //
+void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
+     handler.Text(v);
 }
 
 json2xml::ConvertHandler::TagName
@@ -63,5 +59,11 @@ json2xml::ConvertHandler::new_tag_name() {
      auto r = keys.top();
      keys.pop();
      return r;
+}
+
+json2xml::ConvertHandler::TagName
+json2xml::ConvertHandler::new_tag_name(const simple_json::key_t k) {
+     keys.push(k);
+     return k;
 }
 //////////////////////////////////////////////////////////////////
