@@ -147,3 +147,44 @@ TEST(converthandler, test_07)
      }
      ASSERT_TRUE(true);
 }
+
+TEST(converthandler, test_08)
+{
+     using namespace json2xml;
+     Option O;
+     TESTHANDLER TH;
+     ConvertHandler CH(TH, O);
+     ///
+     CH.ObjectStart();
+     CH.Key("x");
+     CH.Value("6");
+     CH.ObjectEnd();
+     ///
+     for (size_t i = 0; i < TH.events.size(); i++) {
+	  switch (i) {
+	  case 0: {
+	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       break;
+	  }
+	  case 1: {
+	       ASSERT_EQ(OPEN("x"), TH.events[i]);
+	       break;
+	  }
+	  case 2: {
+	       ASSERT_EQ(TEXT("6"), TH.events[i]);
+	       break;
+	  }
+	  case 3: {
+	       ASSERT_EQ(CLOSE("x"), TH.events[i]);
+	       break;
+	  }
+	  case 4: {
+	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       break;
+	  }
+	  default:
+	       ASSERT_TRUE(false);
+	  }
+     }
+     ASSERT_TRUE(true);
+}
