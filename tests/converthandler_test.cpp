@@ -3,6 +3,7 @@
 #include <Json2Xml/Option.hpp>
 #include "SimpleJson/Handler.hpp"
 #include <gtest/gtest.h>
+#include <vector>
 
 TEST(converthandler, test_01)
 {
@@ -15,7 +16,6 @@ TEST(converthandler, test_01)
 
 ////
 class Event {
-
 public:
      Event(std::string one = "",
 	   std::string two = "",
@@ -92,4 +92,58 @@ TEST(converthandler, test_05)
 {
      using namespace json2xml;
      ASSERT_EQ(OPEN("Open"), OPEN("Open"));
+}
+
+////
+using String = std::string;
+class TESTHANDLER: public json2xml::Handler {
+public:
+     std::vector<Event> events;
+
+     virtual void Text(const String s) {
+	  events.push_back(TEXT(s)); }
+     virtual void OpenTag(const String s) {
+	  events.push_back(OPEN(s)); }
+     virtual void CloseTag(const String s) {
+	  events.push_back(CLOSE(s)); }
+     virtual void AttributeValue(const String s1,
+				 const String s2) {
+	  events.push_back(AV(s1, s2)); }
+};
+////
+
+TEST(converthandler, test_06)
+{
+     using namespace json2xml;
+     Option O;
+     TESTHANDLER TH;
+     ConvertHandler CH(TH, O);
+     ASSERT_TRUE(true);
+}
+
+TEST(converthandler, test_07)
+{
+     using namespace json2xml;
+     Option O;
+     TESTHANDLER TH;
+     ConvertHandler CH(TH, O);
+     ///
+     CH.ObjectStart();
+     CH.ObjectEnd();
+     ///
+     for (size_t i = 0; i < TH.events.size(); i++) {
+	  switch (i) {
+	  case 0: {
+	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       break;
+	  }
+	  case 1: {
+	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       break;
+	  }
+	  default:
+	       ASSERT_TRUE(false);
+	  }
+     }
+     ASSERT_TRUE(true);
 }
