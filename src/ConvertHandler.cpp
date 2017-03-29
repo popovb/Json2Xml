@@ -9,4 +9,52 @@
 #include "ConvertHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
+json2xml::
+ConvertHandler::ConvertHandler(json2xml::Handler& h,
+			       const Option& o):
+     handler(h),
+     option(o)
+{
+     return;
+}
+
+json2xml::ConvertHandler::~ConvertHandler() {
+     return;
+}
+
+void json2xml::ConvertHandler::ObjectStart() {
+     //
+     //TODO
+     //
+}
+
+void json2xml::ConvertHandler::ObjectEnd() {
+     //
+     //TODO
+     //
+}
+
+void json2xml::ConvertHandler::ArrayStart() {
+     //
+     //TODO
+     //
+}
+
+void json2xml::ConvertHandler::ArrayEnd() {
+     //
+     //TODO
+     //
+}
+
+void json2xml::ConvertHandler::Key(const simple_json::key_t) {
+     //
+     //TODO
+     //
+}
+
+void json2xml::ConvertHandler::Value(const simple_json::value_t) {
+     //
+     //TODO
+     //
+}
 //////////////////////////////////////////////////////////////////

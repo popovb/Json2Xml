@@ -19,8 +19,7 @@ namespace json2xml {
      class ConvertHandler: public simple_json::Handler {
 
      public:
-	  ConvertHandler(::json2xml::Handler&, const Option&);
-
+	  ConvertHandler(json2xml::Handler&, const Option&);
 	  virtual ~ConvertHandler();
 
 	  virtual void ObjectStart();
@@ -31,6 +30,10 @@ namespace json2xml {
 
 	  virtual void Key(const simple_json::key_t);
 	  virtual void Value(const simple_json::value_t);
+
+     protected:
+	  json2xml::Handler& handler;
+	  const Option& option;
      };
 //////////////////////////////////////////////////////////////////
 }
