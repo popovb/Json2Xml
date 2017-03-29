@@ -38,6 +38,7 @@ add_executable(converter_test
   converter_test.cpp
   ${SourceDir}/Option.cpp
   ${SourceDir}/Converter.cpp
+  ${SourceDir}/ConvertHandler.cpp
   )
 
 target_link_libraries(converter_test
