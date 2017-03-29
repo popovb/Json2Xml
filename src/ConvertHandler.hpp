@@ -10,6 +10,7 @@
 #include <Json2Xml/Handler.hpp>
 #include "SimpleJson/Handler.hpp"
 #include "SimpleJson/Common.hpp"
+#include <stack>
 
 #ifndef __json2xml_ConvertHandler_hpp__
 #define __json2xml_ConvertHandler_hpp__
@@ -34,6 +35,11 @@ namespace json2xml {
      protected:
 	  json2xml::Handler& handler;
 	  const Option& option;
+
+	  std::stack<simple_json::key_t> keys;
+
+	  using TagName = String;
+	  TagName new_tag_name();
      };
 //////////////////////////////////////////////////////////////////
 }

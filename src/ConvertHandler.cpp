@@ -23,15 +23,11 @@ json2xml::ConvertHandler::~ConvertHandler() {
 }
 
 void json2xml::ConvertHandler::ObjectStart() {
-     //
-     //TODO
-     //
+     handler.OpenTag(new_tag_name());
 }
 
 void json2xml::ConvertHandler::ObjectEnd() {
-     //
-     //TODO
-     //
+     handler.CloseTag(new_tag_name());
 }
 
 void json2xml::ConvertHandler::ArrayStart() {
@@ -56,5 +52,16 @@ void json2xml::ConvertHandler::Value(const simple_json::value_t) {
      //
      //TODO
      //
+}
+
+json2xml::ConvertHandler::TagName
+json2xml::ConvertHandler::new_tag_name() {
+     if (keys.size() == 0) {
+	  keys.push(option.getRootName());
+	  return option.getRootName();
+     }
+     auto r = keys.top();
+     keys.pop();
+     return r;
 }
 //////////////////////////////////////////////////////////////////
