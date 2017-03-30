@@ -160,6 +160,7 @@ TEST(converthandler, test_08)
      CH.Value("6");
      CH.ObjectEnd();
      ///
+     ASSERT_EQ(5, TH.events.size());
      for (size_t i = 0; i < TH.events.size(); i++) {
 	  switch (i) {
 	  case 0: {
