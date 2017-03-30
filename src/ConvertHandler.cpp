@@ -65,6 +65,12 @@ void json2xml::ConvertHandler::ArrayEnd() {
 }
 
 void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
+     if (last_event == Event::VALUE) {
+	  handler.CloseTag(pop());
+     }
+     //
+     //TODO
+     //
      handler.OpenTag(k);
      closed_tags.push(k);
      last_event = Event::KEY;
