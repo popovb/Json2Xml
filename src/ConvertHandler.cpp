@@ -23,47 +23,67 @@ json2xml::ConvertHandler::~ConvertHandler() {
 }
 
 void json2xml::ConvertHandler::ObjectStart() {
-     handler.OpenTag(new_tag_name());
+     if (last_event == Event::UNDEF) {
+	  handler.OpenTag(pop());
+
+     } else {
+
+     }
+     //handler.OpenTag(new_tag_name());
+     //
+     //TODO
+     //
+     last_event = Event::OBJECTSTART;
 }
 
 void json2xml::ConvertHandler::ObjectEnd() {
-     handler.CloseTag(new_tag_name());
+     if (last_event == Event::OBJECTSTART) {
+	  handler.CloseTag(pop());
+
+     } else {
+	  handler.CloseTag(pop());
+	  handler.CloseTag(pop());
+     }
+     //
+     //TODO
+     //
+     last_event = Event::OBJECTEND;
 }
 
 void json2xml::ConvertHandler::ArrayStart() {
      //
      //TODO
      //
+     last_event = Event::ARRAYSTART;
 }
 
 void json2xml::ConvertHandler::ArrayEnd() {
      //
      //TODO
      //
+     last_event = Event::ARRAYEND;
 }
 
 void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
-     handler.OpenTag(new_tag_name(k));
+     handler.OpenTag(k);
+     closed_tags.push(k);
+     last_event = Event::KEY;
 }
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
      handler.Text(v);
+     last_event = Event::VALUE;
 }
 
-json2xml::ConvertHandler::TagName
-json2xml::ConvertHandler::new_tag_name() {
-     if (keys.size() == 0) {
-	  keys.push(option.getRootName());
+json2xml::ConvertHandler::TagName json2xml::ConvertHandler::pop() {
+     if (closed_tags.size() == 0) {
+	  closed_tags.push(option.getRootName());
 	  return option.getRootName();
-     }
-     auto r = keys.top();
-     keys.pop();
-     return r;
-}
 
-json2xml::ConvertHandler::TagName
-json2xml::ConvertHandler::new_tag_name(const simple_json::key_t k) {
-     keys.push(k);
-     return k;
+     } else {
+	  auto r = closed_tags.top();
+	  closed_tags.pop();
+	  return r;
+     }
 }
 //////////////////////////////////////////////////////////////////

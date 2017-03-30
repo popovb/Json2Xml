@@ -36,11 +36,20 @@ namespace json2xml {
 	  json2xml::Handler& handler;
 	  const Option& option;
 
-	  std::stack<simple_json::key_t> keys;
-
 	  using TagName = String;
-	  TagName new_tag_name();
-	  TagName new_tag_name(const simple_json::key_t);
+	  std::stack<TagName> closed_tags;
+	  TagName pop();
+
+	  enum class Event {
+	       UNDEF,
+	       OBJECTSTART,
+	       OBJECTEND,
+	       ARRAYSTART,
+	       ARRAYEND,
+	       KEY,
+	       VALUE
+	  };
+	  Event last_event = Event::UNDEF;
      };
 //////////////////////////////////////////////////////////////////
 }
