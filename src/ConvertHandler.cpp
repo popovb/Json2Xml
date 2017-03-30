@@ -85,13 +85,14 @@ void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
      auto pp = pop_place();
+     //error!!!
      if (pp.place == Place::IN_ARRAY) {
 	  (pp.count)++;
 	  handler.OpenTag(option.getArraysItemName());
 	  handler.AttributeValue(option.getArraysCountName(),
 				 std::to_string(pp.count));
 	  handler.Text(v);
-	  handler.CloseTag(option.getArraysItemName());
+	  handler.CloseTag(option.getArraysItemName());//error!!
 	  push_place(pp);
 
      } else {

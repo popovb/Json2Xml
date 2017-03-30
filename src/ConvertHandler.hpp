@@ -10,6 +10,7 @@
 #include <Json2Xml/Handler.hpp>
 #include "SimpleJson/Handler.hpp"
 #include "SimpleJson/Common.hpp"
+#include "EventLooker.hpp"
 #include <stack>
 
 #ifndef __json2xml_ConvertHandler_hpp__
@@ -36,10 +37,12 @@ namespace json2xml {
 	  json2xml::Handler& handler;
 	  const Option& option;
 
+	  //class TagHistory
 	  using TagName = String;
 	  std::stack<TagName> closed_tags;
 	  TagName pop();
 
+	  //class EventLooker
 	  enum class Event {
 	       UNDEF,
 	       OBJECTSTART,
@@ -51,6 +54,7 @@ namespace json2xml {
 	  };
 	  Event last_event = Event::UNDEF;
 
+	  //class PlaceLooker
 	  ////
 	  enum class Place {
 	       IN_OBJECT,
