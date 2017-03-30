@@ -50,6 +50,22 @@ namespace json2xml {
 	       VALUE
 	  };
 	  Event last_event = Event::UNDEF;
+
+	  ////
+	  enum class Place {
+	       IN_OBJECT,
+	       IN_ARRAY
+	  };
+	  using Count = size_t;
+	  struct PlaceCount {
+
+	       Place place;
+	       Count count;
+	  };
+	  std::stack<PlaceCount> places;
+	  void push_place(const PlaceCount);
+	  PlaceCount pop_place();
+	  ////
      };
 //////////////////////////////////////////////////////////////////
 }
