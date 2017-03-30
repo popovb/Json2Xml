@@ -9,4 +9,5 @@ converter_test
 handler_test
 libsimple_json.a
 converthandler_test
+eventlooker_test
 
