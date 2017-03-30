@@ -88,3 +88,16 @@ target_link_libraries(converthandler_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(eventlooker_test
+  eventlooker_test.cpp
+  ${SourceDir}/EventLooker.cpp
+  )
+
+target_link_libraries(eventlooker_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
