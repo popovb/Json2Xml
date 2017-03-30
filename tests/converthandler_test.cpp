@@ -245,3 +245,146 @@ TEST(converthandler, test_09)
      }
      ASSERT_TRUE(true);
 }
+
+TEST(converthandler, test_10)
+{
+     using namespace json2xml;
+     Option O;
+     TESTHANDLER TH;
+     ConvertHandler CH(TH, O);
+     ///
+     CH.ObjectStart();
+     CH.Key("x");
+     CH.ObjectStart();
+     CH.Key("y");
+     CH.Value("7");
+     CH.ObjectEnd();
+     CH.ObjectEnd();
+     ///
+     ASSERT_EQ(7, TH.events.size());
+     for (size_t i = 0; i < TH.events.size(); i++) {
+	  switch (i) {
+	  case 0: {
+	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       break;
+	  }
+	  case 1: {
+	       ASSERT_EQ(OPEN("x"), TH.events[i]);
+	       break;
+	  }
+	  case 2: {
+	       ASSERT_EQ(OPEN("y"), TH.events[i]);
+	       break;
+	  }
+	  case 3: {
+	       ASSERT_EQ(TEXT("7"), TH.events[i]);
+	       break;
+	  }
+	  case 4: {
+	       ASSERT_EQ(CLOSE("y"), TH.events[i]);
+	       break;
+	  }
+	  case 5: {
+	       ASSERT_EQ(CLOSE("x"), TH.events[i]);
+	       break;
+	  }
+	  case 6: {
+	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       break;
+	  }
+	  default:
+	       ASSERT_TRUE(false);
+	  }
+     }
+     ASSERT_TRUE(true);
+}
+
+TEST(converthandler, test_11)
+{
+     using namespace json2xml;
+     Option O;
+     TESTHANDLER TH;
+     ConvertHandler CH(TH, O);
+     ///
+     CH.ObjectStart();
+     CH.Key("x");
+     CH.ArrayStart();
+     CH.Value("1");
+     CH.Value("2");
+     CH.Value("3");
+     CH.ArrayEnd();
+     CH.ObjectEnd();
+     ///
+     //ASSERT_EQ(16, TH.events.size());
+     for (size_t i = 0; i < TH.events.size(); i++) {
+	  switch (i) {
+	  case 0: {
+	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       break;
+	  }
+	  case 1: {
+	       ASSERT_EQ(OPEN("x"), TH.events[i]);
+	       break;
+	  }
+	  case 2: {
+	       ASSERT_EQ(OPEN("item"), TH.events[i]);
+	       break;
+	  }
+	  case 3: {
+	       ASSERT_EQ(AV("n", "1"), TH.events[i]);
+	       break;
+	  }
+	  case 4: {
+	       ASSERT_EQ(TEXT("1"), TH.events[i]);
+	       break;
+	  }
+	  case 5: {
+	       ASSERT_EQ(CLOSE("item"), TH.events[i]);
+	       break;
+	  }
+	  case 6: {
+	       ASSERT_EQ(OPEN("item"), TH.events[i]);
+	       break;
+	  }
+	  case 7: {
+	       ASSERT_EQ(AV("n", "2"), TH.events[i]);
+	       break;
+	  }
+	  case 8: {
+	       ASSERT_EQ(TEXT("2"), TH.events[i]);
+	       break;
+	  }
+	  case 9: {
+	       ASSERT_EQ(CLOSE("item"), TH.events[i]);
+	       break;
+	  }
+	  case 10: {
+	       ASSERT_EQ(OPEN("item"), TH.events[i]);
+	       break;
+	  }
+	  case 11: {
+	       ASSERT_EQ(AV("n", "3"), TH.events[i]);
+	       break;
+	  }
+	  case 12: {
+	       ASSERT_EQ(TEXT("3"), TH.events[i]);
+	       break;
+	  }
+	  case 13: {
+	       ASSERT_EQ(CLOSE("item"), TH.events[i]);
+	       break;
+	  }
+	  case 14: {
+	       ASSERT_EQ(CLOSE("x"), TH.events[i]);
+	       break;
+	  }
+	  case 15: {
+	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       break;
+	  }
+	  default:
+	       ASSERT_TRUE(false);
+	  }
+     }
+     ASSERT_TRUE(true);
+}
