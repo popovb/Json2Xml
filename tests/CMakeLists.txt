@@ -79,6 +79,7 @@ add_executable(converthandler_test
   converthandler_test.cpp
   ${SourceDir}/Option.cpp
   ${SourceDir}/ConvertHandler.cpp
+  ${SourceDir}/EventLooker.cpp
   )
 
 target_link_libraries(converthandler_test
