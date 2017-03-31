@@ -11,4 +11,5 @@ libsimple_json.a
 converthandler_test
 eventlooker_test
 taghistory_test
+placelooker_test
 
