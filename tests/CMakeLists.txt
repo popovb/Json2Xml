@@ -39,6 +39,8 @@ add_executable(converter_test
   ${SourceDir}/Option.cpp
   ${SourceDir}/Converter.cpp
   ${SourceDir}/ConvertHandler.cpp
+  ${SourceDir}/EventLooker.cpp
+  ${SourceDir}/TagHistory.cpp
   )
 
 target_link_libraries(converter_test
@@ -80,6 +82,7 @@ add_executable(converthandler_test
   ${SourceDir}/Option.cpp
   ${SourceDir}/ConvertHandler.cpp
   ${SourceDir}/EventLooker.cpp
+  ${SourceDir}/TagHistory.cpp
   )
 
 target_link_libraries(converthandler_test
