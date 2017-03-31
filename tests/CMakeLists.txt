@@ -118,3 +118,16 @@ target_link_libraries(taghistory_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(placelooker_test
+  placelooker_test.cpp
+  ${SourceDir}/PlaceLooker.cpp
+  )
+
+target_link_libraries(placelooker_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
