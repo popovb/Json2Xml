@@ -102,3 +102,16 @@ target_link_libraries(eventlooker_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(taghistory_test
+  taghistory_test.cpp
+  ${SourceDir}/TagHistory.cpp
+  )
+
+target_link_libraries(taghistory_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
