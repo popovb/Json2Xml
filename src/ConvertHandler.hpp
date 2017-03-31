@@ -42,20 +42,9 @@ namespace json2xml {
 	  std::stack<TagName> closed_tags;
 	  TagName pop();
 
-	  //class EventLooker
-	  enum class Event {
-	       UNDEF,
-	       OBJECTSTART,
-	       OBJECTEND,
-	       ARRAYSTART,
-	       ARRAYEND,
-	       KEY,
-	       VALUE
-	  };
-	  Event last_event = Event::UNDEF;
+	  EventLooker el;
 
-	  //class PlaceLooker
-	  ////
+	  ////class PlaceLooker
 	  enum class Place {
 	       IN_OBJECT,
 	       IN_ARRAY

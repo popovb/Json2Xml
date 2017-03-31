@@ -23,7 +23,8 @@ json2xml::ConvertHandler::~ConvertHandler() {
 }
 
 void json2xml::ConvertHandler::ObjectStart() {
-     if (last_event == Event::UNDEF) {
+     el.set(Event::OBJECTSTART);
+     if (el.previous() == Event::UNDEF) {
 	  handler.OpenTag(pop());
 
      } else {
@@ -33,15 +34,15 @@ void json2xml::ConvertHandler::ObjectStart() {
      //
      //TODO
      //
-     last_event = Event::OBJECTSTART;
      push_place( {Place::IN_OBJECT, 0} );
 }
 
 void json2xml::ConvertHandler::ObjectEnd() {
-     if (last_event == Event::OBJECTSTART) {
+     el.set(Event::OBJECTEND);
+     if (el.previous() == Event::OBJECTSTART) {
 	  handler.CloseTag(pop());
 
-     } else if (last_event == Event::OBJECTEND) {
+     } else if (el.previous() == Event::OBJECTEND) {
 	  handler.CloseTag(pop());
 
      } else {
@@ -51,28 +52,28 @@ void json2xml::ConvertHandler::ObjectEnd() {
      //
      //TODO
      //
-     last_event = Event::OBJECTEND;
      pop_place();
 }
 
 void json2xml::ConvertHandler::ArrayStart() {
+     el.set(Event::ARRAYSTART);
      //
      //TODO
      //
-     last_event = Event::ARRAYSTART;
      push_place( {Place::IN_ARRAY, 0} );
 }
 
 void json2xml::ConvertHandler::ArrayEnd() {
+     el.set(Event::ARRAYEND);
      //
      //TODO
      //
-     last_event = Event::ARRAYEND;
      pop_place();
 }
 
 void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
-     if (last_event == Event::VALUE) {
+     el.set(Event::KEY);
+     if (el.previous() == Event::VALUE) {
 	  handler.CloseTag(pop());
      }
      //
@@ -80,10 +81,10 @@ void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
      //
      handler.OpenTag(k);
      closed_tags.push(k);
-     last_event = Event::KEY;
 }
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
+     el.set(Event::VALUE);
      auto pp = pop_place();
      //error!!!
      if (pp.place == Place::IN_ARRAY) {
@@ -98,7 +99,6 @@ void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
      } else {
 	  handler.Text(v);
      }
-     last_event = Event::VALUE;
 }
 
 json2xml::ConvertHandler::TagName json2xml::ConvertHandler::pop() {
