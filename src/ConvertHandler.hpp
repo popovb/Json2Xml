@@ -11,7 +11,7 @@
 #include "SimpleJson/Handler.hpp"
 #include "SimpleJson/Common.hpp"
 #include "EventLooker.hpp"
-#include <stack>
+#include "TagHistory.hpp"
 
 #ifndef __json2xml_ConvertHandler_hpp__
 #define __json2xml_ConvertHandler_hpp__
@@ -37,11 +37,7 @@ namespace json2xml {
 	  json2xml::Handler& handler;
 	  const Option& option;
 
-	  //class TagHistory
-	  using TagName = String;
-	  std::stack<TagName> closed_tags;
-	  TagName pop();
-
+	  TagHistory th;
 	  EventLooker el;
 
 	  ////class PlaceLooker

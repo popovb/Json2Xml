@@ -13,7 +13,8 @@ json2xml::
 ConvertHandler::ConvertHandler(json2xml::Handler& h,
 			       const Option& o):
      handler(h),
-     option(o)
+     option(o),
+     th(o.getRootName())
 {
      return;
 }
@@ -25,7 +26,7 @@ json2xml::ConvertHandler::~ConvertHandler() {
 void json2xml::ConvertHandler::ObjectStart() {
      el.set(Event::OBJECTSTART);
      if (el.previous() == Event::UNDEF) {
-	  handler.OpenTag(pop());
+	  handler.OpenTag(th.pop());
 
      } else {
 
@@ -40,14 +41,14 @@ void json2xml::ConvertHandler::ObjectStart() {
 void json2xml::ConvertHandler::ObjectEnd() {
      el.set(Event::OBJECTEND);
      if (el.previous() == Event::OBJECTSTART) {
-	  handler.CloseTag(pop());
+	  handler.CloseTag(th.pop());
 
      } else if (el.previous() == Event::OBJECTEND) {
-	  handler.CloseTag(pop());
+	  handler.CloseTag(th.pop());
 
      } else {
-	  handler.CloseTag(pop());
-	  handler.CloseTag(pop());
+	  handler.CloseTag(th.pop());
+	  handler.CloseTag(th.pop());
      }
      //
      //TODO
@@ -74,13 +75,13 @@ void json2xml::ConvertHandler::ArrayEnd() {
 void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
      el.set(Event::KEY);
      if (el.previous() == Event::VALUE) {
-	  handler.CloseTag(pop());
+	  handler.CloseTag(th.pop());
      }
      //
      //TODO
      //
      handler.OpenTag(k);
-     closed_tags.push(k);
+     th.push(k);
 }
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
@@ -98,18 +99,6 @@ void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
 
      } else {
 	  handler.Text(v);
-     }
-}
-
-json2xml::ConvertHandler::TagName json2xml::ConvertHandler::pop() {
-     if (closed_tags.size() == 0) {
-	  closed_tags.push(option.getRootName());
-	  return option.getRootName();
-
-     } else {
-	  auto r = closed_tags.top();
-	  closed_tags.pop();
-	  return r;
      }
 }
 
