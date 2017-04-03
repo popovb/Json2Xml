@@ -13,6 +13,8 @@
 #include "EventLooker.hpp"
 #include "TagHistory.hpp"
 #include "PlaceLooker.hpp"
+#include "ObjectHandlerFabric.hpp"
+#include "Worker.hpp"
 
 #ifndef __json2xml_ConvertHandler_hpp__
 #define __json2xml_ConvertHandler_hpp__
@@ -37,6 +39,8 @@ namespace json2xml {
      protected:
 	  json2xml::Handler& handler;
 	  const Option& option;
+	  ObjectHandlerFabric ohf;
+	  Worker* worker;
 
 	  TagHistory th;
 	  EventLooker el;

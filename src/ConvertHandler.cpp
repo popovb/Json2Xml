@@ -7,6 +7,7 @@
 //
 
 #include "ConvertHandler.hpp"
+#include "RegularWorker.hpp"
 
 //////////////////////////////////////////////////////////////////
 json2xml::
@@ -14,12 +15,15 @@ ConvertHandler::ConvertHandler(json2xml::Handler& h,
 			       const Option& o):
      handler(h),
      option(o),
+     ohf(o),
+     worker(new RegularWorker(h)),
      th(o.getRootName())
 {
      return;
 }
 
 json2xml::ConvertHandler::~ConvertHandler() {
+     if (worker != nullptr) delete worker;
      return;
 }
 
@@ -30,12 +34,15 @@ void json2xml::ConvertHandler::ObjectStart() {
      //
      //
      //
-     if (el.previous() == Event::UNDEF) {
-	  handler.OpenTag(th.pop());
-
-     } else {
-
-     }
+     auto hndlr = ohf.make(el);
+     auto instr = hndlr->handle(th, pl);
+     worker->start(instr);
+     //
+     //
+     // if (el.previous() == Event::UNDEF) {
+     // 	  handler.OpenTag(th.pop());
+     // } else {
+     // }
      //
      //TODO
      //
@@ -43,6 +50,9 @@ void json2xml::ConvertHandler::ObjectStart() {
 
 void json2xml::ConvertHandler::ObjectEnd() {
      el.set(Event::OBJECTEND);
+     //
+     //
+     //
      if (el.previous() == Event::OBJECTSTART) {
 	  handler.CloseTag(th.pop());
 
