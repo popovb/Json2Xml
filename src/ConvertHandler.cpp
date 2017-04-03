@@ -25,6 +25,11 @@ json2xml::ConvertHandler::~ConvertHandler() {
 
 void json2xml::ConvertHandler::ObjectStart() {
      el.set(Event::OBJECTSTART);
+     pl++;
+     pl.set_object();
+     //
+     //
+     //
      if (el.previous() == Event::UNDEF) {
 	  handler.OpenTag(th.pop());
 
@@ -34,7 +39,6 @@ void json2xml::ConvertHandler::ObjectStart() {
      //
      //TODO
      //
-     pl.set_object();
 }
 
 void json2xml::ConvertHandler::ObjectEnd() {
@@ -57,10 +61,11 @@ void json2xml::ConvertHandler::ObjectEnd() {
 
 void json2xml::ConvertHandler::ArrayStart() {
      el.set(Event::ARRAYSTART);
+     pl++;
+     pl.set_array();
      //
      //TODO
      //
-     pl.set_array();
 }
 
 void json2xml::ConvertHandler::ArrayEnd() {
@@ -73,6 +78,7 @@ void json2xml::ConvertHandler::ArrayEnd() {
 
 void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
      el.set(Event::KEY);
+     pl++;
      if (el.previous() == Event::VALUE) {
 	  handler.CloseTag(th.pop());
      }
@@ -85,9 +91,9 @@ void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
      el.set(Event::VALUE);
+     pl++;
      //error!!!
      if (pl.is_array()) {
-	  pl++;
 	  handler.OpenTag(option.getArraysItemName());
 	  handler.AttributeValue(option.getArraysCountName(),
 				 std::to_string(pl.get_count()));
