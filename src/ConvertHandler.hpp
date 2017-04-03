@@ -12,6 +12,7 @@
 #include "SimpleJson/Common.hpp"
 #include "EventLooker.hpp"
 #include "TagHistory.hpp"
+#include "PlaceLooker.hpp"
 
 #ifndef __json2xml_ConvertHandler_hpp__
 #define __json2xml_ConvertHandler_hpp__
@@ -24,14 +25,14 @@ namespace json2xml {
 	  ConvertHandler(json2xml::Handler&, const Option&);
 	  virtual ~ConvertHandler();
 
-	  virtual void ObjectStart();
-	  virtual void ObjectEnd();
+	  virtual void ObjectStart() override;
+	  virtual void ObjectEnd() override;
 
-	  virtual void ArrayStart();
-	  virtual void ArrayEnd();
+	  virtual void ArrayStart() override;
+	  virtual void ArrayEnd() override;
 
-	  virtual void Key(const simple_json::key_t);
-	  virtual void Value(const simple_json::value_t);
+	  virtual void Key(const simple_json::key_t) override;
+	  virtual void Value(const simple_json::value_t) override;
 
      protected:
 	  json2xml::Handler& handler;
@@ -39,22 +40,7 @@ namespace json2xml {
 
 	  TagHistory th;
 	  EventLooker el;
-
-	  ////class PlaceLooker
-	  enum class Place {
-	       IN_OBJECT,
-	       IN_ARRAY
-	  };
-	  using Count = size_t;
-	  struct PlaceCount {
-
-	       Place place;
-	       Count count;
-	  };
-	  std::stack<PlaceCount> places;
-	  void push_place(const PlaceCount);
-	  PlaceCount pop_place();
-	  ////
+	  PlaceLooker pl;
      };
 //////////////////////////////////////////////////////////////////
 }
