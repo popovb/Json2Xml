@@ -7,6 +7,7 @@
 //
 
 #include <Json2Xml/Option.hpp>
+#include "EventLooker.hpp"
 #include "ObjectHandler.hpp"
 
 #ifndef __json2xml_ObjectHandlerFabric_hpp__
@@ -20,6 +21,9 @@ namespace json2xml {
 	  ObjectHandlerFabric(const Option&);
 
 	  ObjectHandler make(EventLooker&) const;
+
+     private:
+	  const Option& option;
      };
 //////////////////////////////////////////////////////////////////
 }

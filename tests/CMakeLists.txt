@@ -84,6 +84,7 @@ add_executable(converthandler_test
   ${SourceDir}/EventLooker.cpp
   ${SourceDir}/TagHistory.cpp
   ${SourceDir}/PlaceLooker.cpp
+  ${SourceDir}/ObjectHandlerFabric.cpp
   )
 
 target_link_libraries(converthandler_test
