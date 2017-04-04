@@ -6,20 +6,16 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#include "Instructions.hpp"
+#include "RegularWorker.hpp"
 
-#ifndef __json2xml_Worker_hpp__
-#define __json2xml_Worker_hpp__
-
-namespace json2xml {
 //////////////////////////////////////////////////////////////////
-     class Worker {
-
-     public:
-	  virtual ~Worker() { }
-
-	  virtual void start(const Instructions&) = 0;
-     };
-//////////////////////////////////////////////////////////////////
+json2xml::RegularWorker::RegularWorker(json2xml::Handler& h):
+     handler(h)
+{
+     return;
 }
-#endif // __json2xml_Worker_hpp__
+
+json2xml::RegularWorker::~RegularWorker() {
+     return;
+}
+//////////////////////////////////////////////////////////////////

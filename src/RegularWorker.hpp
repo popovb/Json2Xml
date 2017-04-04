@@ -21,6 +21,9 @@ namespace json2xml {
 	  virtual ~RegularWorker();
 
 	  virtual void start(const Instructions&) override;
+
+     private:
+	  json2xml::Handler& handler;
      };
 //////////////////////////////////////////////////////////////////
 }
