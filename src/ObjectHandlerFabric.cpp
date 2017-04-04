@@ -7,6 +7,8 @@
 //
 
 #include "ObjectHandlerFabric.hpp"
+#include "NullHandler.hpp"
+#include <memory>
 
 //////////////////////////////////////////////////////////////////
 json2xml::
@@ -14,5 +16,36 @@ ObjectHandlerFabric::ObjectHandlerFabric(const Option& o):
      option(o)
 {
      return;
+}
+
+json2xml::ObjectHandler
+json2xml::ObjectHandlerFabric::make(EventLooker& el) const {
+     auto current = el.current();
+     switch (current) {
+
+     case Event::UNDEF:
+	  return std::make_unique<NullHandler>();
+
+     case Event::OBJECTSTART:
+	  return std::make_unique<ObjectStartHandler>();
+
+     case Event::OBJECTEND:
+	  return std::make_unique<ObjectEndHandler>();
+
+     case Event::ARRAYSTART:
+	  return std::make_unique<ArrayStartHandler>();
+
+     case Event::ARRAYEND:
+	  return std::make_unique<ArrayEndHandler>();
+
+     case Event::KEY:
+	  return std::make_unique<KeyHandler>();
+
+     case Event::VALUE:
+	  return std::make_unique<ValueHandler>();
+
+     default:
+	  return std::make_unique<NullHandler>();
+     }
 }
 //////////////////////////////////////////////////////////////////
