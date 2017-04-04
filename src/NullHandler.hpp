@@ -6,28 +6,25 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#include "TagHistory.hpp"
-#include "PlaceLooker.hpp"
+#include "ObjectHandler.hpp"
 #include "Instructions.hpp"
-#include <memory>
 
-#ifndef __json2xml_ObjectHandler_hpp__
-#define __json2xml_ObjectHandler_hpp__
+#ifndef __json2xml_NullHandler_hpp__
+#define __json2xml_NullHandler_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
-     class _ObjectHandler {
+     class NullHandler: public _ObjectHandler {
 
      public:
-	  virtual ~_ObjectHandler() = 0;
+	  virtual ~NullHandler() { }
 
 	  virtual Instructions handle(TagHistory&,
-				      PlaceLooker&) const;
+				      PlaceLooker&) const override {
+	       Instructions i;
+	       return i;
+	  }
      };
 //////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////
-     using ObjectHandler = std::unique_ptr<_ObjectHandler>;
-//////////////////////////////////////////////////////////////////
 }
-#endif // __json2xml_ObjectHandler_hpp__
+#endif // __json2xml_NullHandler_hpp__
