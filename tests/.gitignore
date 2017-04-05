@@ -13,4 +13,5 @@ eventlooker_test
 taghistory_test
 placelooker_test
 regularworker_test
+objectstarthandler_test
 
