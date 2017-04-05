@@ -31,21 +31,9 @@ void json2xml::ConvertHandler::ObjectStart() {
      el.set(Event::OBJECTSTART);
      pl++;
      pl.set_object();
-     //
-     //
-     //
      auto hndlr = ohf.make(el);
      auto instr = hndlr->handle(th, pl);
      worker->start(instr);
-     //
-     //
-     // if (el.previous() == Event::UNDEF) {
-     // 	  handler.OpenTag(th.pop());
-     // } else {
-     // }
-     //
-     //TODO
-     //
 }
 
 void json2xml::ConvertHandler::ObjectEnd() {
