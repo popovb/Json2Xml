@@ -85,6 +85,10 @@ add_executable(converthandler_test
   ${SourceDir}/TagHistory.cpp
   ${SourceDir}/PlaceLooker.cpp
   ${SourceDir}/ObjectHandlerFabric.cpp
+  ${SourceDir}/ObjectStartHandler.cpp
+  ${SourceDir}/ObjectEndHandler.cpp
+  ${SourceDir}/ArrayStartHandler.cpp
+  ${SourceDir}/ArrayEndHandler.cpp
   ${SourceDir}/RegularWorker.cpp
   ${SourceDir}/KeyHandler.cpp
   ${SourceDir}/ValueHandler.cpp
