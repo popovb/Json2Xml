@@ -8,6 +8,12 @@
 
 #include "ObjectHandlerFabric.hpp"
 #include "NullHandler.hpp"
+#include "ObjectStartHandler.hpp"
+#include "ObjectEndHandler.hpp"
+#include "ArrayStartHandler.hpp"
+#include "ArrayEndHandler.hpp"
+#include "KeyHandler.hpp"
+#include "ValueHandler.hpp"
 #include <memory>
 
 //////////////////////////////////////////////////////////////////
@@ -27,13 +33,13 @@ json2xml::ObjectHandlerFabric::make(EventLooker& el) const {
 	  return std::make_unique<NullHandler>();
 
      case Event::OBJECTSTART:
-	  return std::make_unique<ObjectStartHandler>();
+	  return std::make_unique<ObjectStartHandler>(option);
 
      case Event::OBJECTEND:
 	  return std::make_unique<ObjectEndHandler>();
 
      case Event::ARRAYSTART:
-	  return std::make_unique<ArrayStartHandler>();
+	  return std::make_unique<ArrayStartHandler>(option);
 
      case Event::ARRAYEND:
 	  return std::make_unique<ArrayEndHandler>();
@@ -42,7 +48,7 @@ json2xml::ObjectHandlerFabric::make(EventLooker& el) const {
 	  return std::make_unique<KeyHandler>();
 
      case Event::VALUE:
-	  return std::make_unique<ValueHandler>();
+	  return std::make_unique<ValueHandler>(option);
 
      default:
 	  return std::make_unique<NullHandler>();

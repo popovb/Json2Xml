@@ -8,6 +8,7 @@
 
 #include "ObjectHandler.hpp"
 #include "Instructions.hpp"
+#include <Json2Xml/Option.hpp>
 
 #ifndef __json2xml_ValueHandler_hpp__
 #define __json2xml_ValueHandler_hpp__
@@ -17,6 +18,7 @@ namespace json2xml {
      class ValueHandler: public _ObjectHandler {
 
      public:
+	  ValueHandler(const Option&);
 	  virtual ~ValueHandler();
 
 	  virtual Instructions handle(TagHistory&,

@@ -8,6 +8,7 @@
 
 #include "ObjectHandler.hpp"
 #include "Instructions.hpp"
+#include <Json2Xml/Option.hpp>
 
 #ifndef __json2xml_ObjectStartHandler_hpp__
 #define __json2xml_ObjectStartHandler_hpp__
@@ -17,6 +18,7 @@ namespace json2xml {
      class ObjectStartHandler: public _ObjectHandler {
 
      public:
+	  ObjectStartHandler(const Option&);
 	  virtual ~ObjectStartHandler();
 
 	  virtual Instructions handle(TagHistory&,
