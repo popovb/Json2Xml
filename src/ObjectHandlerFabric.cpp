@@ -7,7 +7,7 @@
 //
 
 #include "ObjectHandlerFabric.hpp"
-#include "NullHandler.hpp"
+#include "ObjectNullHandler.hpp"
 #include "ObjectStartHandler.hpp"
 #include "ObjectEndHandler.hpp"
 #include "ArrayStartHandler.hpp"
@@ -30,7 +30,7 @@ json2xml::ObjectHandlerFabric::make(EventLooker& el) const {
      switch (current) {
 
      case Event::UNDEF:
-	  return std::make_unique<NullHandler>();
+	  return std::make_unique<ObjectNullHandler>();
 
      case Event::OBJECTSTART:
 	  return std::make_unique<ObjectStartHandler>(option);
@@ -51,7 +51,7 @@ json2xml::ObjectHandlerFabric::make(EventLooker& el) const {
 	  return std::make_unique<ValueHandler>(option);
 
      default:
-	  return std::make_unique<NullHandler>();
+	  return std::make_unique<ObjectNullHandler>();
      }
 }
 //////////////////////////////////////////////////////////////////
