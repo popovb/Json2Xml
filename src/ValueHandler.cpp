@@ -9,4 +9,19 @@
 #include "ValueHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
+json2xml::ValueHandler::ValueHandler(const Option& o):
+     option(o)
+{
+     return;
+}
+
+json2xml::Instructions
+json2xml::ValueHandler::handle(TagHistory&,
+			       PlaceLooker&) const {
+     //
+     //TODO
+     //
+     Instructions i;
+     return i;
+}
 //////////////////////////////////////////////////////////////////

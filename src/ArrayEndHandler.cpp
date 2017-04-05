@@ -9,4 +9,17 @@
 #include "ArrayEndHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
+json2xml::ArrayEndHandler::ArrayEndHandler() {
+     return;
+}
+
+json2xml::Instructions
+json2xml::ArrayEndHandler::handle(TagHistory&,
+				  PlaceLooker&) const {
+     //
+     //TODO
+     //
+     Instructions i;
+     return i;
+}
 //////////////////////////////////////////////////////////////////

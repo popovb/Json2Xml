@@ -9,4 +9,17 @@
 #include "KeyHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
+json2xml::KeyHandler::KeyHandler() {
+     return;
+}
+
+json2xml::Instructions
+json2xml::KeyHandler::handle(TagHistory&,
+			     PlaceLooker&) const {
+     //
+     //TODO
+     //
+     Instructions i;
+     return i;
+}
 //////////////////////////////////////////////////////////////////

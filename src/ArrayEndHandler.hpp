@@ -17,7 +17,7 @@ namespace json2xml {
      class ArrayEndHandler: public _ObjectHandler {
 
      public:
-	  virtual ~ArrayEndHandler();
+	  ArrayEndHandler();
 
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&) const override;

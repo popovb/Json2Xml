@@ -19,10 +19,11 @@ namespace json2xml {
 
      public:
 	  ValueHandler(const Option&);
-	  virtual ~ValueHandler();
 
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&) const override;
+     private:
+	  const Option& option;
      };
 //////////////////////////////////////////////////////////////////
 }

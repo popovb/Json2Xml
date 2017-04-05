@@ -9,4 +9,20 @@
 #include "ArrayStartHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
+json2xml::
+ArrayStartHandler::ArrayStartHandler(const Option& o):
+     option(o)
+{
+     return;
+}
+
+json2xml::Instructions
+json2xml::ArrayStartHandler::handle(TagHistory&,
+				    PlaceLooker&) const {
+     //
+     //TODO
+     //
+     Instructions i;
+     return i;
+}
 //////////////////////////////////////////////////////////////////

@@ -22,6 +22,8 @@ namespace json2xml {
 
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&) const override;
+     private:
+	  const Option& option;
      };
 //////////////////////////////////////////////////////////////////
 }

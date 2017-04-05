@@ -9,4 +9,20 @@
 #include "ObjectStartHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
+json2xml::
+ObjectStartHandler::ObjectStartHandler(const Option& o):
+     option(o)
+{
+     return;
+}
+
+json2xml::Instructions
+json2xml::ObjectStartHandler::handle(TagHistory&,
+				     PlaceLooker&) const {
+     //
+     //TODO
+     //
+     Instructions i;
+     return i;
+}
 //////////////////////////////////////////////////////////////////

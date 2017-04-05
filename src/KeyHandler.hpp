@@ -17,7 +17,7 @@ namespace json2xml {
      class KeyHandler: public _ObjectHandler {
 
      public:
-	  virtual ~KeyHandler();
+	  KeyHandler();
 
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&) const override;
