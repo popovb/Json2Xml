@@ -86,6 +86,8 @@ add_executable(converthandler_test
   ${SourceDir}/PlaceLooker.cpp
   ${SourceDir}/ObjectHandlerFabric.cpp
   ${SourceDir}/RegularWorker.cpp
+  ${SourceDir}/KeyHandler.cpp
+  ${SourceDir}/ValueHandler.cpp
   )
 
 target_link_libraries(converthandler_test
