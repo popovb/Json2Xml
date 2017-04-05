@@ -7,7 +7,6 @@
 //
 
 #include <string>
-#include <list>
 #include <vector>
 
 #ifndef __json2xml_Instructions_hpp__
@@ -35,10 +34,13 @@ namespace json2xml {
 	  InstType type;
 	  Arguments args;
      };
+
+     bool operator==(const Instruction&, const Instruction&);
+     bool operator!=(const Instruction&, const Instruction&);
 //////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////
-     using Instructions = std::list<Instruction>;
+     using Instructions = std::vector<Instruction>;
 //////////////////////////////////////////////////////////////////
 }
 #endif // __json2xml_Instructions_hpp__
