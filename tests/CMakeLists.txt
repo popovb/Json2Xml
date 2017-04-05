@@ -140,3 +140,16 @@ target_link_libraries(placelooker_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(regularworker_test
+  regularworker_test.cpp
+  ${SourceDir}/RegularWorker.cpp
+  )
+
+target_link_libraries(regularworker_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
