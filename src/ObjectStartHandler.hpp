@@ -8,6 +8,7 @@
 
 #include "ObjectHandler.hpp"
 #include "Instructions.hpp"
+#include "EventLooker.hpp"
 #include <Json2Xml/Option.hpp>
 
 #ifndef __json2xml_ObjectStartHandler_hpp__
@@ -18,12 +19,13 @@ namespace json2xml {
      class ObjectStartHandler: public _ObjectHandler {
 
      public:
-	  ObjectStartHandler(const Option&);
+	  ObjectStartHandler(const Option&, const Event);
 
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&) const override;
      private:
 	  const Option& option;
+	  const Event previous;
      };
 //////////////////////////////////////////////////////////////////
 }

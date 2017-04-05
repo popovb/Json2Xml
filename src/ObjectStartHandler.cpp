@@ -10,8 +10,10 @@
 
 //////////////////////////////////////////////////////////////////
 json2xml::
-ObjectStartHandler::ObjectStartHandler(const Option& o):
-     option(o)
+ObjectStartHandler::ObjectStartHandler(const Option& o,
+				       const Event e):
+     option(o),
+     previous(e)
 {
      return;
 }
