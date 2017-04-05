@@ -19,12 +19,21 @@ ObjectStartHandler::ObjectStartHandler(const Option& o,
 }
 
 json2xml::Instructions
-json2xml::ObjectStartHandler::handle(TagHistory&,
+json2xml::ObjectStartHandler::handle(TagHistory& th,
 				     PlaceLooker&) const {
+     Instructions is;
      //
      //TODO
      //
-     Instructions i;
-     return i;
+     if (previous == Event::UNDEF) {
+	  Instruction i({ InstType::OPEN, { th.pop() } });
+	  is.push_back(i);
+
+     } else {
+	  //
+	  //TODO
+	  //
+     }
+     return is;
 }
 //////////////////////////////////////////////////////////////////
