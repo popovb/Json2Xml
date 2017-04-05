@@ -9,16 +9,14 @@
 #include "ObjectHandler.hpp"
 #include "Instructions.hpp"
 
-#ifndef __json2xml_NullHandler_hpp__
-#define __json2xml_NullHandler_hpp__
+#ifndef __json2xml_ObjectNullHandler_hpp__
+#define __json2xml_ObjectNullHandler_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
-     class NullHandler: public _ObjectHandler {
+     class ObjectNullHandler: public _ObjectHandler {
 
      public:
-	  virtual ~NullHandler() { }
-
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&) const override {
 	       Instructions i;
@@ -27,4 +25,4 @@ namespace json2xml {
      };
 //////////////////////////////////////////////////////////////////
 }
-#endif // __json2xml_NullHandler_hpp__
+#endif // __json2xml_ObjectNullHandler_hpp__
