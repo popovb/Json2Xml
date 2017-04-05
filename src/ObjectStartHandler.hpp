@@ -19,7 +19,6 @@ namespace json2xml {
 
      public:
 	  ObjectStartHandler(const Option&);
-	  virtual ~ObjectStartHandler();
 
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&) const override;

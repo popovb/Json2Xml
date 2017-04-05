@@ -19,10 +19,8 @@ namespace json2xml {
      class _ObjectHandler {
 
      public:
-	  virtual ~_ObjectHandler() = 0;
-
 	  virtual Instructions handle(TagHistory&,
-				      PlaceLooker&) const;
+				      PlaceLooker&) const = 0;
      };
 //////////////////////////////////////////////////////////////////
 
