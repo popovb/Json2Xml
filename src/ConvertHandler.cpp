@@ -66,17 +66,6 @@ void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
      auto hndlr = ohf.make(el);
      auto instr = hndlr->handle(th, pl, k);
      worker->start(instr);
-     //
-     //
-     //
-     // if (el.previous() == Event::VALUE) {
-     // 	  handler.CloseTag(th.pop());
-     // }
-     // //
-     // //TODO
-     // //
-     // handler.OpenTag(k);
-     // th.push(k);
 }
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
