@@ -16,13 +16,17 @@ json2xml::KeyHandler::KeyHandler(const Event p):
 }
 
 json2xml::Instructions
-json2xml::KeyHandler::handle(TagHistory&,
+json2xml::KeyHandler::handle(TagHistory& th,
 			     PlaceLooker&,
-			     const Argument) const {
-     //
-     //TODO
-     //
-     Instructions i;
-     return i;
+			     const Argument a) const {
+     Instructions is;
+     if (previous == Event::VALUE) {
+	  Instruction i({ InstType::CLOSE, { th.pop() } });
+	  is.push_back(i);
+     }
+     Instruction i({ InstType::OPEN, { a } });
+     is.push_back(i);
+     th.push(a);
+     return is;
 }
 //////////////////////////////////////////////////////////////////
