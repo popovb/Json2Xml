@@ -134,11 +134,11 @@ TEST(converthandler, test_07)
      for (size_t i = 0; i < TH.events.size(); i++) {
 	  switch (i) {
 	  case 0: {
-	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       ASSERT_EQ(OPEN("Json"), TH.events[i]);
 	       break;
 	  }
 	  case 1: {
-	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       ASSERT_EQ(CLOSE("Json"), TH.events[i]);
 	       break;
 	  }
 	  default:
@@ -164,7 +164,7 @@ TEST(converthandler, test_08)
      for (size_t i = 0; i < TH.events.size(); i++) {
 	  switch (i) {
 	  case 0: {
-	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       ASSERT_EQ(OPEN("Json"), TH.events[i]);
 	       break;
 	  }
 	  case 1: {
@@ -180,7 +180,7 @@ TEST(converthandler, test_08)
 	       break;
 	  }
 	  case 4: {
-	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       ASSERT_EQ(CLOSE("Json"), TH.events[i]);
 	       break;
 	  }
 	  default:
@@ -208,7 +208,7 @@ TEST(converthandler, test_09)
      for (size_t i = 0; i < TH.events.size(); i++) {
 	  switch (i) {
 	  case 0: {
-	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       ASSERT_EQ(OPEN("Json"), TH.events[i]);
 	       break;
 	  }
 	  case 1: {
@@ -236,7 +236,7 @@ TEST(converthandler, test_09)
 	       break;
 	  }
 	  case 7: {
-	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       ASSERT_EQ(CLOSE("Json"), TH.events[i]);
 	       break;
 	  }
 	  default:
@@ -265,7 +265,7 @@ TEST(converthandler, test_10)
      for (size_t i = 0; i < TH.events.size(); i++) {
 	  switch (i) {
 	  case 0: {
-	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       ASSERT_EQ(OPEN("Json"), TH.events[i]);
 	       break;
 	  }
 	  case 1: {
@@ -289,7 +289,7 @@ TEST(converthandler, test_10)
 	       break;
 	  }
 	  case 6: {
-	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       ASSERT_EQ(CLOSE("Json"), TH.events[i]);
 	       break;
 	  }
 	  default:
@@ -315,11 +315,11 @@ TEST(converthandler, test_11)
      CH.ArrayEnd();
      CH.ObjectEnd();
      ///
-     //ASSERT_EQ(16, TH.events.size());
+     ASSERT_EQ(16, TH.events.size());
      for (size_t i = 0; i < TH.events.size(); i++) {
 	  switch (i) {
 	  case 0: {
-	       ASSERT_EQ(OPEN("json"), TH.events[i]);
+	       ASSERT_EQ(OPEN("Json"), TH.events[i]);
 	       break;
 	  }
 	  case 1: {
@@ -379,7 +379,7 @@ TEST(converthandler, test_11)
 	       break;
 	  }
 	  case 15: {
-	       ASSERT_EQ(CLOSE("json"), TH.events[i]);
+	       ASSERT_EQ(CLOSE("Json"), TH.events[i]);
 	       break;
 	  }
 	  default:
