@@ -170,3 +170,21 @@ target_link_libraries(objectstarthandler_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(objectendhandler_test
+  objectendhandler_test.cpp
+  ${SourceDir}/ObjectStartHandler.cpp
+  ${SourceDir}/ObjectEndHandler.cpp
+  ${SourceDir}/TagHistory.cpp
+  ${SourceDir}/Option.cpp
+  ${SourceDir}/PlaceLooker.cpp
+  ${SourceDir}/Instructions.cpp
+  )
+
+target_link_libraries(objectendhandler_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
