@@ -9,17 +9,28 @@
 #include "ObjectEndHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
-json2xml::ObjectEndHandler::ObjectEndHandler() {
+json2xml::ObjectEndHandler::ObjectEndHandler(const Event e):
+     previous(e)
+{
      return;
 }
 
 json2xml::Instructions
-json2xml::ObjectEndHandler::handle(TagHistory&,
-				   PlaceLooker&) const {
-     //
-     //TODO
-     //
-     Instructions i;
-     return i;
+json2xml::ObjectEndHandler::handle(TagHistory& th,
+				   PlaceLooker& pl) const {
+     Instructions is;
+     Instruction i({ InstType::CLOSE, { th.pop() } });
+     is.push_back(i);
+
+     pl.release();
+     if (previous == Event::OBJECTSTART)
+	  return is;
+
+     if (previous == Event::OBJECTEND)
+	  return is;
+
+     Instruction i2({ InstType::CLOSE, { th.pop() } });
+     is.push_back(i2);
+     return is;
 }
 //////////////////////////////////////////////////////////////////

@@ -8,6 +8,7 @@
 
 #include "ObjectHandler.hpp"
 #include "Instructions.hpp"
+#include "EventLooker.hpp"
 
 #ifndef __json2xml_ObjectEndHandler_hpp__
 #define __json2xml_ObjectEndHandler_hpp__
@@ -17,9 +18,11 @@ namespace json2xml {
      class ObjectEndHandler: public _ObjectHandler {
 
      public:
-	  ObjectEndHandler();
+	  ObjectEndHandler(const Event);
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&) const override;
+     private:
+	  const Event previous;
      };
 //////////////////////////////////////////////////////////////////
 }
