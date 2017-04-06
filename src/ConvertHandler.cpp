@@ -41,7 +41,6 @@ void json2xml::ConvertHandler::ObjectEnd() {
      auto hndlr = ohf.make(el);
      auto instr = hndlr->handle(th, pl);
      worker->start(instr);
-
 }
 
 void json2xml::ConvertHandler::ArrayStart() {
@@ -64,14 +63,20 @@ void json2xml::ConvertHandler::ArrayEnd() {
 void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
      el.set(Event::KEY);
      pl++;
-     if (el.previous() == Event::VALUE) {
-	  handler.CloseTag(th.pop());
-     }
+     auto hndlr = ohf.make(el);
+     auto instr = hndlr->handle(th, pl, k);
+     worker->start(instr);
      //
-     //TODO
      //
-     handler.OpenTag(k);
-     th.push(k);
+     //
+     // if (el.previous() == Event::VALUE) {
+     // 	  handler.CloseTag(th.pop());
+     // }
+     // //
+     // //TODO
+     // //
+     // handler.OpenTag(k);
+     // th.push(k);
 }
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
