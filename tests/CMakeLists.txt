@@ -188,3 +188,22 @@ target_link_libraries(objectendhandler_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(keyhandler_test
+  keyhandler_test.cpp
+  ${SourceDir}/ObjectStartHandler.cpp
+  ${SourceDir}/ObjectEndHandler.cpp
+  ${SourceDir}/KeyHandler.cpp
+  ${SourceDir}/TagHistory.cpp
+  ${SourceDir}/Option.cpp
+  ${SourceDir}/PlaceLooker.cpp
+  ${SourceDir}/Instructions.cpp
+  )
+
+target_link_libraries(keyhandler_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
