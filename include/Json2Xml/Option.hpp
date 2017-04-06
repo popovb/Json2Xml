@@ -14,6 +14,7 @@
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
      using RootName        = String;
+     using DefaultName     = String;
      using ArraysItemName  = String;
      using ArraysCountName = String;
 //////////////////////////////////////////////////////////////////
@@ -22,16 +23,19 @@ namespace json2xml {
      class Option {
 
      public:
-	  Option(const RootName        = "json",
+	  Option(const RootName        = "Json",
+		 const DefaultName     = "json",
 		 const ArraysItemName  = "item",
 		 const ArraysCountName = "n");
 
 	  RootName getRootName() const;
+	  DefaultName getDefaultName() const;
 	  ArraysItemName getArraysItemName() const;
 	  ArraysCountName getArraysCountName() const;
 
      private:
 	  const RootName rn;
+	  const DefaultName dn;
 	  const ArraysItemName ain;
 	  const ArraysCountName acn;
      };

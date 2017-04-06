@@ -10,9 +10,11 @@
 
 //////////////////////////////////////////////////////////////////
 json2xml::Option::Option(const RootName n,
+			 const DefaultName _dn,
 			 const ArraysItemName in,
 			 const ArraysCountName cn):
      rn(n),
+     dn(_dn),
      ain(in),
      acn(cn)
 {
@@ -21,6 +23,10 @@ json2xml::Option::Option(const RootName n,
 
 json2xml::RootName json2xml::Option::getRootName() const {
      return rn;
+}
+
+json2xml::RootName json2xml::Option::getDefaultName() const {
+     return dn;
 }
 
 json2xml::ArraysItemName
