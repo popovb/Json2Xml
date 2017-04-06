@@ -14,4 +14,5 @@ taghistory_test
 placelooker_test
 regularworker_test
 objectstarthandler_test
+objectendhandler_test
 
