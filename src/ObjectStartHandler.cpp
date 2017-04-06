@@ -18,22 +18,33 @@ ObjectStartHandler::ObjectStartHandler(const Option& o,
      return;
 }
 
+//
+//TODO need rafactoring!
+//
 json2xml::Instructions
 json2xml::ObjectStartHandler::handle(TagHistory& th,
 				     PlaceLooker&) const {
-     Instructions is;
+     //root object
+     if (previous == Event::UNDEF) {
+	  Instructions is;
+	  Instruction i({ InstType::OPEN, { option.getRootName() } });
+	  is.push_back(i);
+	  th.push(option.getRootName());
+	  return is;
+     }
+
+     //inner object
+     if (previous != Event::KEY) {
+	  Instructions is;
+	  Instruction i({ InstType::OPEN, { option.getDefaultName() } });
+	  is.push_back(i);
+	  th.push(option.getDefaultName());
+	  return is;
+     }
      //
      //TODO
      //
-     if (previous == Event::UNDEF) {
-	  Instruction i({ InstType::OPEN, { th.pop() } });
-	  is.push_back(i);
-
-     } else {
-	  //
-	  //TODO
-	  //
-     }
+     Instructions is;
      return is;
 }
 //////////////////////////////////////////////////////////////////
