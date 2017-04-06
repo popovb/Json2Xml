@@ -17,7 +17,7 @@ ConvertHandler::ConvertHandler(json2xml::Handler& h,
      option(o),
      ohf(o),
      worker(new RegularWorker(h)),
-     th(o.getRootName())
+     th(o.getDefaultName())
 {
      return;
 }
@@ -38,23 +38,10 @@ void json2xml::ConvertHandler::ObjectStart() {
 
 void json2xml::ConvertHandler::ObjectEnd() {
      el.set(Event::OBJECTEND);
-     //
-     //
-     //
-     if (el.previous() == Event::OBJECTSTART) {
-	  handler.CloseTag(th.pop());
+     auto hndlr = ohf.make(el);
+     auto instr = hndlr->handle(th, pl);
+     worker->start(instr);
 
-     } else if (el.previous() == Event::OBJECTEND) {
-	  handler.CloseTag(th.pop());
-
-     } else {
-	  handler.CloseTag(th.pop());
-	  handler.CloseTag(th.pop());
-     }
-     //
-     //TODO
-     //
-     pl.release();
 }
 
 void json2xml::ConvertHandler::ArrayStart() {
