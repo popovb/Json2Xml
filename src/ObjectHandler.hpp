@@ -20,7 +20,8 @@ namespace json2xml {
 
      public:
 	  virtual Instructions handle(TagHistory&,
-				      PlaceLooker&) const = 0;
+				      PlaceLooker&,
+				      const Argument = "") const = 0;
      };
 //////////////////////////////////////////////////////////////////
 

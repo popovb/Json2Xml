@@ -23,7 +23,8 @@ ObjectStartHandler::ObjectStartHandler(const Option& o,
 //
 json2xml::Instructions
 json2xml::ObjectStartHandler::handle(TagHistory& th,
-				     PlaceLooker&) const {
+				     PlaceLooker&,
+				     const Argument) const {
      //root object
      if (previous == Event::UNDEF) {
 	  Instructions is;

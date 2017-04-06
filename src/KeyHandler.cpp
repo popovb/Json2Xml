@@ -9,13 +9,16 @@
 #include "KeyHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
-json2xml::KeyHandler::KeyHandler() {
+json2xml::KeyHandler::KeyHandler(const Event p):
+     previous(p)
+{
      return;
 }
 
 json2xml::Instructions
 json2xml::KeyHandler::handle(TagHistory&,
-			     PlaceLooker&) const {
+			     PlaceLooker&,
+			     const Argument) const {
      //
      //TODO
      //

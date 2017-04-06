@@ -8,6 +8,7 @@
 
 #include "ObjectHandler.hpp"
 #include "Instructions.hpp"
+#include "EventLooker.hpp"
 
 #ifndef __json2xml_KeyHandler_hpp__
 #define __json2xml_KeyHandler_hpp__
@@ -17,10 +18,13 @@ namespace json2xml {
      class KeyHandler: public _ObjectHandler {
 
      public:
-	  KeyHandler();
+	  KeyHandler(const Event);
 
 	  virtual Instructions handle(TagHistory&,
-				      PlaceLooker&) const override;
+				      PlaceLooker&,
+				      const Argument = "") const override;
+     private:
+	  const Event previous;
      };
 //////////////////////////////////////////////////////////////////
 }

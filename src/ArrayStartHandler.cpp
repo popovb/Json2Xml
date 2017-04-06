@@ -18,7 +18,8 @@ ArrayStartHandler::ArrayStartHandler(const Option& o):
 
 json2xml::Instructions
 json2xml::ArrayStartHandler::handle(TagHistory&,
-				    PlaceLooker&) const {
+				    PlaceLooker&,
+				    const Argument) const {
      //
      //TODO
      //

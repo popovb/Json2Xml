@@ -20,7 +20,8 @@ namespace json2xml {
 	  ArrayEndHandler();
 
 	  virtual Instructions handle(TagHistory&,
-				      PlaceLooker&) const override;
+				      PlaceLooker&,
+				      const Argument = "") const override;
      };
 //////////////////////////////////////////////////////////////////
 }

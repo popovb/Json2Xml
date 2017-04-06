@@ -15,7 +15,8 @@ json2xml::ArrayEndHandler::ArrayEndHandler() {
 
 json2xml::Instructions
 json2xml::ArrayEndHandler::handle(TagHistory&,
-				  PlaceLooker&) const {
+				  PlaceLooker&,
+				  const Argument) const {
      //
      //TODO
      //

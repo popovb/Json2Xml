@@ -18,7 +18,8 @@ namespace json2xml {
 
      public:
 	  virtual Instructions handle(TagHistory&,
-				      PlaceLooker&) const override {
+				      PlaceLooker&,
+				      const Argument = "") const override {
 	       Instructions i;
 	       return i;
 	  }

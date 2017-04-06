@@ -22,7 +22,8 @@ namespace json2xml {
 	  ObjectStartHandler(const Option&, const Event);
 
 	  virtual Instructions handle(TagHistory&,
-				      PlaceLooker&) const override;
+				      PlaceLooker&,
+				      const Argument = "") const override;
      private:
 	  const Option& option;
 	  const Event previous;

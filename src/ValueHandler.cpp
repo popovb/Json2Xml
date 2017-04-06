@@ -17,7 +17,8 @@ json2xml::ValueHandler::ValueHandler(const Option& o):
 
 json2xml::Instructions
 json2xml::ValueHandler::handle(TagHistory&,
-			       PlaceLooker&) const {
+			       PlaceLooker&,
+			       const Argument) const {
      //
      //TODO
      //
