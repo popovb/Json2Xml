@@ -47,6 +47,7 @@ namespace json2xml {
 	  PlaceLooker pl;
 
 	  void handle(const String = "");
+	  void count();
      };
 //////////////////////////////////////////////////////////////////
 }

@@ -29,7 +29,7 @@ json2xml::ConvertHandler::~ConvertHandler() {
 
 void json2xml::ConvertHandler::ObjectStart() {
      el.set(Event::OBJECTSTART);
-     pl++;
+     count();
      pl.set_object();
      handle();
 }
@@ -42,7 +42,7 @@ void json2xml::ConvertHandler::ObjectEnd() {
 
 void json2xml::ConvertHandler::ArrayStart() {
      el.set(Event::ARRAYSTART);
-     pl++;
+     count();
      pl.set_array();
      handle();
 }
@@ -55,13 +55,13 @@ void json2xml::ConvertHandler::ArrayEnd() {
 
 void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
      el.set(Event::KEY);
-     pl++;
+     count();
      handle(k);
 }
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
      el.set(Event::VALUE);
-     pl++;
+     count();
      handle(v);
 }
 
@@ -69,5 +69,10 @@ void json2xml::ConvertHandler::handle(const String in) {
      auto hndlr = ohf.make(el);
      auto instr = hndlr->handle(th, pl, in);
      worker->start(instr);
+}
+
+void json2xml::ConvertHandler::count() {
+     if (el.previous() == Event::KEY) return;
+     pl++;
 }
 //////////////////////////////////////////////////////////////////
