@@ -31,16 +31,12 @@ void json2xml::ConvertHandler::ObjectStart() {
      el.set(Event::OBJECTSTART);
      pl++;
      pl.set_object();
-     auto hndlr = ohf.make(el);
-     auto instr = hndlr->handle(th, pl);
-     worker->start(instr);
+     handle();
 }
 
 void json2xml::ConvertHandler::ObjectEnd() {
      el.set(Event::OBJECTEND);
-     auto hndlr = ohf.make(el);
-     auto instr = hndlr->handle(th, pl);
-     worker->start(instr);
+     handle();
      pl.release();
 }
 
@@ -48,32 +44,30 @@ void json2xml::ConvertHandler::ArrayStart() {
      el.set(Event::ARRAYSTART);
      pl++;
      pl.set_array();
-     auto hndlr = ohf.make(el);
-     auto instr = hndlr->handle(th, pl);
-     worker->start(instr);
+     handle();
 }
 
 void json2xml::ConvertHandler::ArrayEnd() {
      el.set(Event::ARRAYEND);
-     auto hndlr = ohf.make(el);
-     auto instr = hndlr->handle(th, pl);
-     worker->start(instr);
+     handle();
      pl.release();
 }
 
 void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
      el.set(Event::KEY);
      pl++;
-     auto hndlr = ohf.make(el);
-     auto instr = hndlr->handle(th, pl, k);
-     worker->start(instr);
+     handle(k);
 }
 
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
      el.set(Event::VALUE);
      pl++;
+     handle(v);
+}
+
+void json2xml::ConvertHandler::handle(const String in) {
      auto hndlr = ohf.make(el);
-     auto instr = hndlr->handle(th, pl, v);
+     auto instr = hndlr->handle(th, pl, in);
      worker->start(instr);
 }
 //////////////////////////////////////////////////////////////////

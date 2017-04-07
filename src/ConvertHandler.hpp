@@ -45,6 +45,8 @@ namespace json2xml {
 	  TagHistory th;
 	  EventLooker el;
 	  PlaceLooker pl;
+
+	  void handle(const String = "");
      };
 //////////////////////////////////////////////////////////////////
 }
