@@ -41,22 +41,23 @@ void json2xml::ConvertHandler::ObjectEnd() {
      auto hndlr = ohf.make(el);
      auto instr = hndlr->handle(th, pl);
      worker->start(instr);
+     pl.release();
 }
 
 void json2xml::ConvertHandler::ArrayStart() {
      el.set(Event::ARRAYSTART);
      pl++;
      pl.set_array();
-     //
-     //TODO
-     //
+     auto hndlr = ohf.make(el);
+     auto instr = hndlr->handle(th, pl);
+     worker->start(instr);
 }
 
 void json2xml::ConvertHandler::ArrayEnd() {
      el.set(Event::ARRAYEND);
-     //
-     //TODO
-     //
+     auto hndlr = ohf.make(el);
+     auto instr = hndlr->handle(th, pl);
+     worker->start(instr);
      pl.release();
 }
 
@@ -71,16 +72,8 @@ void json2xml::ConvertHandler::Key(const simple_json::key_t k) {
 void json2xml::ConvertHandler::Value(const simple_json::value_t v) {
      el.set(Event::VALUE);
      pl++;
-     //error!!!
-     if (pl.is_array()) {
-	  handler.OpenTag(option.getArraysItemName());
-	  handler.AttributeValue(option.getArraysCountName(),
-				 std::to_string(pl.get_count()));
-	  handler.Text(v);
-	  handler.CloseTag(option.getArraysItemName());//error!!
-
-     } else {
-	  handler.Text(v);
-     }
+     auto hndlr = ohf.make(el);
+     auto instr = hndlr->handle(th, pl, v);
+     worker->start(instr);
 }
 //////////////////////////////////////////////////////////////////
