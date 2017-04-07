@@ -17,13 +17,12 @@ json2xml::ObjectEndHandler::ObjectEndHandler(const Event e):
 
 json2xml::Instructions
 json2xml::ObjectEndHandler::handle(TagHistory& th,
-				   PlaceLooker& pl,
+				   PlaceLooker&,
 				   const Argument) const {
      Instructions is;
      Instruction i({ InstType::CLOSE, { th.pop() } });
      is.push_back(i);
 
-     pl.release();
      if (previous == Event::OBJECTSTART)
 	  return is;
 
