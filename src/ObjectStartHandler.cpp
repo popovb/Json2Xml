@@ -18,9 +18,6 @@ ObjectStartHandler::ObjectStartHandler(const Option& o,
      return;
 }
 
-//
-//TODO need rafactoring!
-//
 json2xml::Instructions
 json2xml::ObjectStartHandler::handle(TagHistory& th,
 				     PlaceLooker& pl,
@@ -50,28 +47,6 @@ json2xml::ObjectStartHandler::handle(TagHistory& th,
      default:
 	  return dflt(th, pl);
      }
-     // //root object
-     // if (previous == Event::UNDEF) {
-     // 	  Instructions is;
-     // 	  Instruction i({ InstType::OPEN, { option.getRootName() } });
-     // 	  is.push_back(i);
-     // 	  th.push(option.getRootName());
-     // 	  return is;
-     // }
-
-     // //inner object
-     // if (previous != Event::KEY) {
-     // 	  Instructions is;
-     // 	  Instruction i({ InstType::OPEN, { option.getDefaultName() } });
-     // 	  is.push_back(i);
-     // 	  th.push(option.getDefaultName());
-     // 	  return is;
-     // }
-     // //
-     // //TODO
-     // //
-     // Instructions is;
-     // return is;
 }
 
 json2xml::Instructions json2xml::ObjectStartHandler::
@@ -169,6 +144,201 @@ prev_value(TagHistory& th, const PlaceLooker& pl,
 
 json2xml::Instructions json2xml::ObjectStartHandler::
 dflt(TagHistory&, const PlaceLooker&) const {
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_undef_in_object(TagHistory& th) const {
+     Instructions is;
+     Instruction i({ InstType::OPEN, { option.getRootName() } });
+     is.push_back(i);
+     th.push(option.getRootName());
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_undef_in_array(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+     
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_undef_(TagHistory&) const {
+     //
+     //NOT SUPPORT
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_objectstart_in_object(TagHistory& th) const {
+     Instructions is;
+     Instruction i({ InstType::OPEN, { option.getDefaultName() } });
+     is.push_back(i);
+     th.push(option.getDefaultName());
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_objectstart_in_array(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_objectstart_(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_objectend_in_object(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::   
+prev_objectend_in_array(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::   
+prev_objectend_(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::   
+prev_arraystart_in_object(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::        
+prev_arraystart_in_array(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_arraystart_(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_arrayend_in_object(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+     
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_arrayend_in_array(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::     
+prev_arrayend_(TagHistory&) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::     
+prev_key_in_object(TagHistory&,
+		   const Argument) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::          
+prev_key_in_array(TagHistory&,
+		  const Argument) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::          
+prev_key_(TagHistory&, const
+	  Argument) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+     
+json2xml::Instructions json2xml::ObjectStartHandler::          
+prev_value_in_object(TagHistory&,
+		     const Argument) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::               
+prev_value_in_array(TagHistory&,
+		    const Argument) const {
+     //
+     //TODO
+     //
+     Instructions is;
+     return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::                    
+prev_value_(TagHistory&,
+	    const Argument) const {
+     //
+     //TODO
+     //
      Instructions is;
      return is;
 }
