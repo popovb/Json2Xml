@@ -94,7 +94,7 @@ prev_arraystart(TagHistory& th, const PlaceLooker& pl) const {
 	  return prev_arraystart_in_object(th);
 	  
      } else if (pl.is_array()) {
-	  return prev_arraystart_in_array(th);
+	  return prev_arraystart_in_array(th, pl.get_count());
 
      } else {
 	  return prev_arraystart_(th);
@@ -167,11 +167,11 @@ prev_undef_in_array(TagHistory&) const {
 }
      
 json2xml::Instructions json2xml::ObjectStartHandler::
-prev_undef_(TagHistory&) const {
-     //
-     //NOT SUPPORT
-     //
+prev_undef_(TagHistory& th) const {
      Instructions is;
+     Instruction i({ InstType::OPEN, { option.getRootName() } });
+     is.push_back(i);
+     th.push(option.getRootName());
      return is;
 }
 
@@ -227,7 +227,7 @@ prev_objectend_in_array(TagHistory& th,
 json2xml::Instructions json2xml::ObjectStartHandler::   
 prev_objectend_(TagHistory&) const {
      //
-     //TODO
+     //NOT SUPPORT
      //
      Instructions is;
      return is;
@@ -236,18 +236,22 @@ prev_objectend_(TagHistory&) const {
 json2xml::Instructions json2xml::ObjectStartHandler::   
 prev_arraystart_in_object(TagHistory&) const {
      //
-     //TODO
+     //NOT SUPPORT
      //
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::ObjectStartHandler::        
-prev_arraystart_in_array(TagHistory&) const {
-     //
-     //TODO
-     //
+prev_arraystart_in_array(TagHistory& th,
+			 const PlaceLooker::count_t i) const {
      Instructions is;
+     Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV, { option.getArraysCountName(),
+				      std::to_string(i) } });
+     is.push_back(i1);
+     is.push_back(i2);
+     th.push(option.getArraysItemName());
      return is;
 }
 
