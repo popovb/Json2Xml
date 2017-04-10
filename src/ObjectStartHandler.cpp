@@ -23,28 +23,152 @@ ObjectStartHandler::ObjectStartHandler(const Option& o,
 //
 json2xml::Instructions
 json2xml::ObjectStartHandler::handle(TagHistory& th,
-				     PlaceLooker&,
-				     const Argument) const {
-     //root object
-     if (previous == Event::UNDEF) {
-	  Instructions is;
-	  Instruction i({ InstType::OPEN, { option.getRootName() } });
-	  is.push_back(i);
-	  th.push(option.getRootName());
-	  return is;
-     }
+				     PlaceLooker& pl,
+				     const Argument a) const {
+     switch (previous) {
+     case Event::UNDEF:
+	  return prev_undef(th, pl);
+	  
+     case Event::OBJECTSTART:
+	  return prev_objectstart(th, pl);
+	  
+     case Event::OBJECTEND:
+	  return prev_objectend(th, pl);
+	  
+     case Event::ARRAYSTART:
+	  return prev_arraystart(th, pl);
+	  
+     case Event::ARRAYEND:
+	  return prev_arrayend(th, pl);
+	  
+     case Event::KEY:
+	  return prev_key(th, pl, a);
+	  
+     case Event::VALUE:
+	  return prev_value(th, pl, a);
 
-     //inner object
-     if (previous != Event::KEY) {
-	  Instructions is;
-	  Instruction i({ InstType::OPEN, { option.getDefaultName() } });
-	  is.push_back(i);
-	  th.push(option.getDefaultName());
-	  return is;
+     default:
+	  return dflt(th, pl);
      }
-     //
-     //TODO
-     //
+     // //root object
+     // if (previous == Event::UNDEF) {
+     // 	  Instructions is;
+     // 	  Instruction i({ InstType::OPEN, { option.getRootName() } });
+     // 	  is.push_back(i);
+     // 	  th.push(option.getRootName());
+     // 	  return is;
+     // }
+
+     // //inner object
+     // if (previous != Event::KEY) {
+     // 	  Instructions is;
+     // 	  Instruction i({ InstType::OPEN, { option.getDefaultName() } });
+     // 	  is.push_back(i);
+     // 	  th.push(option.getDefaultName());
+     // 	  return is;
+     // }
+     // //
+     // //TODO
+     // //
+     // Instructions is;
+     // return is;
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_undef (TagHistory& th, const PlaceLooker& pl) const {
+     if (pl.is_object()) {
+	  return prev_undef_in_object(th);
+	  
+     } else if (pl.is_array()) {
+	  return prev_undef_in_array(th);
+
+     } else {
+	  return prev_undef_(th);
+     }
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_objectstart (TagHistory& th, const PlaceLooker& pl) const {
+     if (pl.is_object()) {
+	  return prev_objectstart_in_object(th);
+	  
+     } else if (pl.is_array()) {
+	  return prev_objectstart_in_array(th);
+
+     } else {
+	  return prev_objectstart_(th);
+     }
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_objectend(TagHistory& th, const PlaceLooker& pl) const {
+     if (pl.is_object()) {
+	  return prev_objectend_in_object(th);
+	  
+     } else if (pl.is_array()) {
+	  return prev_objectend_in_array(th);
+
+     } else {
+	  return prev_objectend_(th);
+     }
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_arraystart(TagHistory& th, const PlaceLooker& pl) const {
+     if (pl.is_object()) {
+	  return prev_arraystart_in_object(th);
+	  
+     } else if (pl.is_array()) {
+	  return prev_arraystart_in_array(th);
+
+     } else {
+	  return prev_arraystart_(th);
+     }
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_arrayend(TagHistory& th, const PlaceLooker& pl) const {
+     if (pl.is_object()) {
+	  return prev_arrayend_in_object(th);
+	  
+     } else if (pl.is_array()) {
+	  return prev_arrayend_in_array(th);
+
+     } else {
+	  return prev_arrayend_(th);
+     }
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_key(TagHistory& th, const PlaceLooker& pl,
+	 const Argument a) const {
+     if (pl.is_object()) {
+	  return prev_key_in_object(th, a);
+	  
+     } else if (pl.is_array()) {
+	  return prev_key_in_array(th, a);
+
+     } else {
+	  return prev_key_(th, a);
+     }
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+prev_value(TagHistory& th, const PlaceLooker& pl,
+	   const Argument a) const {
+     if (pl.is_object()) {
+	  return prev_value_in_object(th, a);
+	  
+     } else if (pl.is_array()) {
+	  return prev_value_in_array(th, a);
+
+     } else {
+	  return prev_value_(th, a);
+     }
+}
+
+json2xml::Instructions json2xml::ObjectStartHandler::
+dflt(TagHistory&, const PlaceLooker&) const {
      Instructions is;
      return is;
 }
