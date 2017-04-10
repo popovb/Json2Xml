@@ -30,8 +30,8 @@ json2xml::ConvertHandler::~ConvertHandler() {
 void json2xml::ConvertHandler::ObjectStart() {
      el.set(Event::OBJECTSTART);
      count();
-     pl.set_object();
      handle();
+     pl.set_object();
 }
 
 void json2xml::ConvertHandler::ObjectEnd() {
@@ -43,8 +43,8 @@ void json2xml::ConvertHandler::ObjectEnd() {
 void json2xml::ConvertHandler::ArrayStart() {
      el.set(Event::ARRAYSTART);
      count();
-     pl.set_array();
      handle();
+     pl.set_array();
 }
 
 void json2xml::ConvertHandler::ArrayEnd() {
