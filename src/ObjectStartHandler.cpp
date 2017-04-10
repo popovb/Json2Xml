@@ -258,18 +258,18 @@ prev_arraystart_in_array(TagHistory& th,
 json2xml::Instructions json2xml::ObjectStartHandler::
 prev_arraystart_(TagHistory&) const {
      //
-     //TODO
+     //NOT SUPPORT
      //
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::ObjectStartHandler::
-prev_arrayend_in_object(TagHistory&) const {
-     //
-     //TODO
-     //
+prev_arrayend_in_object(TagHistory& th) const {
      Instructions is;
+     Instruction i({ InstType::OPEN, { option.getDefaultName() } });
+     is.push_back(i);
+     th.push(option.getDefaultName());
      return is;
 }
      
