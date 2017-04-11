@@ -189,3 +189,23 @@ TEST(objectstarthandler, test_08)
      auto is = OSH.handle(TH, PL);
      ASSERT_EQ(0, is.size());
 }
+
+TEST(objectstarthandler, test_10)
+{
+     //
+     // [ key : {
+     //         ^
+     using namespace json2xml;
+     Option O;
+     ObjectStartHandler OSH(O, Event::KEY);
+     TagHistory TH("json");
+     PlaceLooker PL;
+     PL.set_array();
+     PL++;
+     PL++;
+     PL++;
+     PL++;
+     PL++;
+     auto is = OSH.handle(TH, PL);
+     ASSERT_EQ(0, is.size());
+}
