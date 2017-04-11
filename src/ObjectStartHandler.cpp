@@ -313,19 +313,19 @@ json2xml::Instructions json2xml::ObjectStartHandler::
 prev_key_(TagHistory&, const
 	  Argument) const {
      //
-     //TODO
+     //NOT SUPPORT
      //
      Instructions is;
      return is;
 }
      
 json2xml::Instructions json2xml::ObjectStartHandler::          
-prev_value_in_object(TagHistory&,
+prev_value_in_object(TagHistory& th,
 		     const Argument) const {
-     //
-     //TODO
-     //
      Instructions is;
+     Instruction i({ InstType::OPEN, { option.getDefaultName() } });
+     is.push_back(i);
+     th.push(option.getDefaultName());
      return is;
 }
 
