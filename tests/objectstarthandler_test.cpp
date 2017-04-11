@@ -231,3 +231,24 @@ TEST(objectstarthandler, test_11)
      Instruction i1({ InstType::OPEN, {"json"} });
      ASSERT_EQ(i1, is[0]);
 }
+
+TEST(objectstarthandler, test_12)
+{
+     //
+     // [ "value" {
+     //           ^
+     using namespace json2xml;
+     Option O;
+     ObjectStartHandler OSH(O, Event::VALUE);
+     TagHistory TH("json");
+     PlaceLooker PL;
+     PL.set_array();
+     PL++;
+     PL++;
+     auto is = OSH.handle(TH, PL);
+     ASSERT_EQ(2, is.size());
+     Instruction i1({ InstType::OPEN, {"item"} });
+     ASSERT_EQ(i1, is[0]);
+     Instruction i2({ InstType::AV, {"n", "2"} });
+     ASSERT_EQ(i2, is[1]);
+}
