@@ -135,7 +135,7 @@ prev_value(TagHistory& th, const PlaceLooker& pl,
 	  return prev_value_in_object(th, a);
 	  
      } else if (pl.is_array()) {
-	  return prev_value_in_array(th, a);
+	  return prev_value_in_array(th, a, pl.get_count());
 
      } else {
 	  return prev_value_(th, a);
@@ -330,12 +330,16 @@ prev_value_in_object(TagHistory& th,
 }
 
 json2xml::Instructions json2xml::ObjectStartHandler::               
-prev_value_in_array(TagHistory&,
-		    const Argument) const {
-     //
-     //TODO
-     //
+prev_value_in_array(TagHistory& th,
+		    const Argument,
+		    const PlaceLooker::count_t i) const {
      Instructions is;
+     Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV, { option.getArraysCountName(),
+				      std::to_string(i) } });
+     is.push_back(i1);
+     is.push_back(i2);
+     th.push(option.getArraysItemName());
      return is;
 }
 
