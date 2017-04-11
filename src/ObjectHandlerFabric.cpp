@@ -39,8 +39,8 @@ json2xml::ObjectHandlerFabric::make(EventLooker& el) const {
 	  return std::make_unique<ObjectEndHandler>(el.previous());
 
      case Event::ARRAYSTART:
-	  return std::make_unique<ArrayStartHandler>(option);
-
+	  return std::make_unique<ArrayStartHandler>(option,
+						     el.previous());
      case Event::ARRAYEND:
 	  return std::make_unique<ArrayEndHandler>();
 
