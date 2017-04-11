@@ -107,7 +107,7 @@ prev_arrayend(TagHistory& th, const PlaceLooker& pl) const {
 	  return prev_arrayend_in_object(th);
 	  
      } else if (pl.is_array()) {
-	  return prev_arrayend_in_array(th);
+	  return prev_arrayend_in_array(th, pl.get_count());
 
      } else {
 	  return prev_arrayend_(th);
@@ -274,11 +274,15 @@ prev_arrayend_in_object(TagHistory& th) const {
 }
      
 json2xml::Instructions json2xml::ObjectStartHandler::
-prev_arrayend_in_array(TagHistory&) const {
-     //
-     //TODO
-     //
+prev_arrayend_in_array(TagHistory& th,
+		       const PlaceLooker::count_t i) const {
      Instructions is;
+     Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV, { option.getArraysCountName(),
+				      std::to_string(i) } });
+     is.push_back(i1);
+     is.push_back(i2);
+     th.push(option.getArraysItemName());
      return is;
 }
 

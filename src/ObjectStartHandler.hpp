@@ -67,7 +67,9 @@ namespace json2xml {
 	  Instructions prev_arraystart_(TagHistory&) const;
 
 	  Instructions prev_arrayend_in_object(TagHistory&) const;
-	  Instructions prev_arrayend_in_array(TagHistory&) const;
+	  Instructions
+	  prev_arrayend_in_array(TagHistory&,
+				 const PlaceLooker::count_t) const;
 	  Instructions prev_arrayend_(TagHistory&) const;
 
 	  Instructions prev_key_in_object(TagHistory&,
