@@ -172,6 +172,23 @@ target_link_libraries(objectstarthandler_test
 ##################################################################
 
 ##################################################################
+add_executable(arraystarthandler_test
+  arraystarthandler_test.cpp
+  ${SourceDir}/ArrayStartHandler.cpp
+  ${SourceDir}/TagHistory.cpp
+  ${SourceDir}/Option.cpp
+  ${SourceDir}/PlaceLooker.cpp
+  ${SourceDir}/Instructions.cpp
+  )
+
+target_link_libraries(arraystarthandler_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
+
+##################################################################
 add_executable(objectendhandler_test
   objectendhandler_test.cpp
   ${SourceDir}/ObjectStartHandler.cpp

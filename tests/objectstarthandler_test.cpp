@@ -1,16 +1,6 @@
 #include <ObjectStartHandler.hpp>
 #include <gtest/gtest.h>
-/*
-     enum class Event {
-	  UNDEF,
-	  OBJECTSTART,
-	  OBJECTEND,
-	  ARRAYSTART,
-	  ARRAYEND,
-	  KEY,
-	  VALUE
-     };
- */
+
 TEST(objectstarthandler, test_01)
 {
      //
