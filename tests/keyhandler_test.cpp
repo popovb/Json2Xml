@@ -158,3 +158,21 @@ TEST(keyhandler, test_08)
      Instruction i2({ InstType::AV, {"name", "TAG6"} });
      ASSERT_EQ(i2, is[2]);
 }
+
+TEST(keyhandler, test_09)
+{
+     //
+     // { ..."value", "key": ...
+     //               ^
+     using namespace json2xml;
+     Option O;
+     KeyHandler KH(O, Event::VALUE);
+     TagHistory TH("json");
+     PlaceLooker PL;
+     PL.set_object();
+     PL++;
+     auto is = KH.handle(TH, PL, "TAG7");
+     ASSERT_EQ(1, is.size());
+     Instruction i0({ InstType::OPEN, {"TAG7"} });
+     ASSERT_EQ(i0, is[0]);
+}
