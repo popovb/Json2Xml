@@ -150,27 +150,21 @@ dflt(TagHistory&, const PlaceLooker&) const {
 
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_undef_in_object(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_undef_in_array(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
      
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_undef_(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
@@ -186,18 +180,14 @@ prev_objectstart_in_object(TagHistory& th) const {
 
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_objectstart_in_array(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_objectstart_(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
@@ -226,18 +216,14 @@ prev_objectend_in_array(TagHistory& th,
 
 json2xml::Instructions json2xml::ArrayStartHandler::   
 prev_objectend_(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::ArrayStartHandler::   
 prev_arraystart_in_object(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
@@ -257,9 +243,7 @@ prev_arraystart_in_array(TagHistory& th,
 
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_arraystart_(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
@@ -288,9 +272,7 @@ prev_arrayend_in_array(TagHistory& th,
 
 json2xml::Instructions json2xml::ArrayStartHandler::     
 prev_arrayend_(TagHistory&) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
@@ -312,9 +294,7 @@ prev_key_in_array(TagHistory&,
 json2xml::Instructions json2xml::ArrayStartHandler::          
 prev_key_(TagHistory&, const
 	  Argument) const {
-     //
      //NOT SUPPORT
-     //
      Instructions is;
      return is;
 }
@@ -346,9 +326,7 @@ prev_value_in_array(TagHistory& th,
 json2xml::Instructions json2xml::ArrayStartHandler::                    
 prev_value_(TagHistory&,
 	    const Argument) const {
-     // //
-     // //NOT SUPPORT***
-     // //
+     //NOT SUPPORT
      Instructions is;
      return is;
 }
