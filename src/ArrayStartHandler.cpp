@@ -149,7 +149,7 @@ dflt(TagHistory&, const PlaceLooker&) const {
 }
 
 json2xml::Instructions json2xml::ArrayStartHandler::
-prev_undef_in_object(TagHistory& th) const {
+prev_undef_in_object(TagHistory&) const {
      //
      //NOT SUPPORT
      //
@@ -167,7 +167,7 @@ prev_undef_in_array(TagHistory&) const {
 }
      
 json2xml::Instructions json2xml::ArrayStartHandler::
-prev_undef_(TagHistory& th) const {
+prev_undef_(TagHistory&) const {
      //
      //NOT SUPPORT
      //
@@ -333,13 +333,13 @@ json2xml::Instructions json2xml::ArrayStartHandler::
 prev_value_in_array(TagHistory& th,
 		    const Argument,
 		    const PlaceLooker::count_t i) const {
-     Instructions is;//**
-     // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
-     // Instruction i2({ InstType::AV, { option.getArraysCountName(),
-     // 				      std::to_string(i) } });
-     // is.push_back(i1);
-     // is.push_back(i2);
-     // th.push(option.getArraysItemName());
+     Instructions is;
+     Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV, { option.getArraysCountName(),
+				      std::to_string(i) } });
+     is.push_back(i1);
+     is.push_back(i2);
+     th.push(option.getArraysItemName());
      return is;
 }
 
@@ -347,7 +347,7 @@ json2xml::Instructions json2xml::ArrayStartHandler::
 prev_value_(TagHistory&,
 	    const Argument) const {
      // //
-     // //NOT SUPPORT
+     // //NOT SUPPORT***
      // //
      Instructions is;
      return is;
