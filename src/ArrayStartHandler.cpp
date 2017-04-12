@@ -322,10 +322,10 @@ prev_key_(TagHistory&, const
 json2xml::Instructions json2xml::ArrayStartHandler::          
 prev_value_in_object(TagHistory& th,
 		     const Argument) const {
-     Instructions is;//**
-     // Instruction i({ InstType::OPEN, { option.getDefaultName() } });
-     // is.push_back(i);
-     // th.push(option.getDefaultName());
+     Instructions is;
+     Instruction i({ InstType::OPEN, { option.getDefaultName() } });
+     is.push_back(i);
+     th.push(option.getDefaultName());
      return is;
 }
 
@@ -333,7 +333,7 @@ json2xml::Instructions json2xml::ArrayStartHandler::
 prev_value_in_array(TagHistory& th,
 		    const Argument,
 		    const PlaceLooker::count_t i) const {
-     Instructions is;
+     Instructions is;//**
      // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
      // Instruction i2({ InstType::AV, { option.getArraysCountName(),
      // 				      std::to_string(i) } });
