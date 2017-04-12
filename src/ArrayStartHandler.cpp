@@ -257,9 +257,9 @@ prev_arraystart_in_array(TagHistory& th,
 
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_arraystart_(TagHistory&) const {
-     // //
-     // //NOT SUPPORT
-     // //
+     //
+     //NOT SUPPORT
+     //
      Instructions is;
      return is;
 }
@@ -267,12 +267,12 @@ prev_arraystart_(TagHistory&) const {
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_arrayend_in_object(TagHistory& th) const {
      Instructions is;
-     // Instruction i({ InstType::OPEN, { option.getDefaultName() } });
-     // is.push_back(i);
-     // th.push(option.getDefaultName());
+     Instruction i({ InstType::OPEN, { option.getDefaultName() } });
+     is.push_back(i);
+     th.push(option.getDefaultName());
      return is;
 }
-     
+
 json2xml::Instructions json2xml::ArrayStartHandler::
 prev_arrayend_in_array(TagHistory& th,
 		       const PlaceLooker::count_t i) const {
