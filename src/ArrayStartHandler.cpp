@@ -305,9 +305,6 @@ prev_key_in_object(TagHistory&,
 json2xml::Instructions json2xml::ArrayStartHandler::          
 prev_key_in_array(TagHistory&,
 		  const Argument) const {
-     // //
-     // //TODO**
-     // //
      Instructions is;
      return is;
 }
@@ -315,9 +312,9 @@ prev_key_in_array(TagHistory&,
 json2xml::Instructions json2xml::ArrayStartHandler::          
 prev_key_(TagHistory&, const
 	  Argument) const {
-     // //
-     // //NOT SUPPORT
-     // //
+     //
+     //NOT SUPPORT
+     //
      Instructions is;
      return is;
 }
@@ -325,7 +322,7 @@ prev_key_(TagHistory&, const
 json2xml::Instructions json2xml::ArrayStartHandler::          
 prev_value_in_object(TagHistory& th,
 		     const Argument) const {
-     Instructions is;
+     Instructions is;//**
      // Instruction i({ InstType::OPEN, { option.getDefaultName() } });
      // is.push_back(i);
      // th.push(option.getDefaultName());
