@@ -298,9 +298,6 @@ prev_arrayend_(TagHistory&) const {
 json2xml::Instructions json2xml::ArrayStartHandler::     
 prev_key_in_object(TagHistory&,
 		   const Argument) const {
-     // //
-     // //TODO
-     // //
      Instructions is;
      return is;
 }
@@ -309,7 +306,7 @@ json2xml::Instructions json2xml::ArrayStartHandler::
 prev_key_in_array(TagHistory&,
 		  const Argument) const {
      // //
-     // //TODO
+     // //TODO**
      // //
      Instructions is;
      return is;
