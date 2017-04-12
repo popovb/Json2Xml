@@ -42,7 +42,8 @@ TEST(keyhandler, test_03)
      // { "key" : ...
      //    ^
      using namespace json2xml;
-     KeyHandler KH(Event::OBJECTSTART);
+     Option O;
+     KeyHandler KH(O, Event::OBJECTSTART);
      TagHistory TH("json");
      PlaceLooker PL;
      PL.set_object();
@@ -58,7 +59,8 @@ TEST(keyhandler, test_04)
      // { ...} "key": ...
      //        ^
      using namespace json2xml;
-     KeyHandler KH(Event::OBJECTEND);
+     Option O;
+     KeyHandler KH(O, Event::OBJECTEND);
      TagHistory TH("json");
      PlaceLooker PL;
      PL.set_object();
@@ -66,4 +68,27 @@ TEST(keyhandler, test_04)
      ASSERT_EQ(1, is.size());
      Instruction i0({ InstType::OPEN, {"TAG2"} });
      ASSERT_EQ(i0, is[0]);
+}
+
+TEST(keyhandler, test_05)
+{
+     //
+     // [ ...} "key": ...
+     //        ^
+     using namespace json2xml;
+     Option O;
+     KeyHandler KH(O, Event::OBJECTEND);
+     TagHistory TH("json");
+     PlaceLooker PL;
+     PL.set_array();
+     PL++;
+     PL++;
+     auto is = KH.handle(TH, PL, "TAG3");
+     ASSERT_EQ(3, is.size());
+     Instruction i0({ InstType::OPEN, {"item"} });
+     ASSERT_EQ(i0, is[0]);
+     Instruction i1({ InstType::AV, {"n", "2"} });
+     ASSERT_EQ(i1, is[1]);
+     Instruction i2({ InstType::AV, {"name", "TAG3"} });
+     ASSERT_EQ(i2, is[2]);
 }
