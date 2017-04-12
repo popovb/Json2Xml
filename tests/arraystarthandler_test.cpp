@@ -224,3 +224,22 @@ TEST(arraystarthandler, test_12)
      auto is = OSH.handle(TH, PL);
      ASSERT_EQ(0, is.size());
 }
+
+TEST(arraystarthandler, test_13)
+{
+     //
+     //  {... : "value", [
+     //                  ^
+     using namespace json2xml;
+     Option O;
+     ArrayStartHandler OSH(O, Event::VALUE);
+     TagHistory TH("json");
+     PlaceLooker PL;
+     PL.set_object();
+     PL++;
+     PL++;
+     auto is = OSH.handle(TH, PL);
+     ASSERT_EQ(1, is.size());
+     Instruction i1({ InstType::OPEN, {"json"} });
+     ASSERT_EQ(i1, is[0]);
+}
