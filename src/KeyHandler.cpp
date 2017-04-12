@@ -46,15 +46,6 @@ json2xml::KeyHandler::handle(TagHistory& th,
      default:
 	  return dflt(th, pl);
      }
-     // Instructions is;
-     // if (previous == Event::VALUE) {
-     // 	  Instruction i({ InstType::CLOSE, { th.pop() } });
-     // 	  is.push_back(i);
-     // }
-     // Instruction i({ InstType::OPEN, { a } });
-     // is.push_back(i);
-     // th.push(a);
-     // return is;
 }
 
 json2xml::Instructions json2xml::KeyHandler::
@@ -345,27 +336,23 @@ prev_value_in_object(TagHistory& th,
 
 json2xml::Instructions json2xml::KeyHandler::               
 prev_value_in_array(TagHistory& th,
-		    const Argument,
+		    const Argument a,
 		    const PlaceLooker::count_t i) const {
-     //
-     //TODO***
-     //
      Instructions is;
-     // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
-     // Instruction i2({ InstType::AV, { option.getArraysCountName(),
-     // 				      std::to_string(i) } });
-     // is.push_back(i1);
-     // is.push_back(i2);
-     // th.push(option.getArraysItemName());
+     Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV, { option.getArraysCountName(),
+				      std::to_string(i) } });
+     Instruction i3({ InstType::AV, { "name", a } });
+     is.push_back(i1);
+     is.push_back(i2);
+     is.push_back(i3);
+     th.push(option.getArraysItemName());
      return is;
 }
 
 json2xml::Instructions json2xml::KeyHandler::                    
 prev_value_(TagHistory&,
 	    const Argument) const {
-     //
-     //TODO
-     //
      //NOT SUPPORT
      Instructions is;
      return is;
