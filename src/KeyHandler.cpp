@@ -32,7 +32,7 @@ json2xml::KeyHandler::handle(TagHistory& th,
 	  return prev_objectend(th, pl, a);
 	  
      case Event::ARRAYSTART:
-	  return prev_arraystart(th, pl);
+	  return prev_arraystart(th, pl, a);
 	  
      case Event::ARRAYEND:
 	  return prev_arrayend(th, pl);
@@ -101,12 +101,16 @@ prev_objectend(TagHistory& th,
 }
 
 json2xml::Instructions json2xml::KeyHandler::
-prev_arraystart(TagHistory& th, const PlaceLooker& pl) const {
+prev_arraystart(TagHistory& th,
+		const PlaceLooker& pl,
+		const Argument a) const {
      if (pl.is_object()) {
 	  return prev_arraystart_in_object(th);
 	  
      } else if (pl.is_array()) {
-	  return prev_arraystart_in_array(th, pl.get_count());
+	  return prev_arraystart_in_array(th,
+					  pl.get_count(),
+					  a);
 
      } else {
 	  return prev_arraystart_(th);
@@ -220,9 +224,6 @@ json2xml::Instructions json2xml::KeyHandler::
 prev_objectend_in_array(TagHistory& th,
 			const PlaceLooker::count_t i,
 			const Argument a) const {
-     //
-     //TODO***
-     //
      Instructions is;
      Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
      Instruction i2({ InstType::AV, { option.getArraysCountName(),
@@ -237,9 +238,6 @@ prev_objectend_in_array(TagHistory& th,
 
 json2xml::Instructions json2xml::KeyHandler::   
 prev_objectend_(TagHistory&) const {
-     //
-     //TODO
-     //
      //NOT SUPPORT
      Instructions is;
      return is;
@@ -247,9 +245,6 @@ prev_objectend_(TagHistory&) const {
 
 json2xml::Instructions json2xml::KeyHandler::   
 prev_arraystart_in_object(TagHistory&) const {
-     //
-     //TODO
-     //
      //NOT SUPPORT
      Instructions is;
      return is;
@@ -257,24 +252,24 @@ prev_arraystart_in_object(TagHistory&) const {
 
 json2xml::Instructions json2xml::KeyHandler::        
 prev_arraystart_in_array(TagHistory& th,
-			 const PlaceLooker::count_t i) const {
-     //
-     //TODO
-     //
+			 const PlaceLooker::count_t i,
+			 const Argument a) const {
      Instructions is;
-     // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
-     // Instruction i2({ InstType::AV, { option.getArraysCountName(),
-     // 				      std::to_string(i) } });
-     // is.push_back(i1);
-     // is.push_back(i2);
-     // th.push(option.getArraysItemName());
+     Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV, { option.getArraysCountName(),
+				      std::to_string(i) } });
+     Instruction i3({ InstType::AV, { "name", a } });
+     is.push_back(i1);
+     is.push_back(i2);
+     is.push_back(i3);
+     th.push(option.getArraysItemName());
      return is;
 }
 
 json2xml::Instructions json2xml::KeyHandler::
 prev_arraystart_(TagHistory&) const {
      //
-     //TODO
+     //TODO***
      //
      //NOT SUPPORT
      Instructions is;
