@@ -9,6 +9,7 @@
 #include "ObjectHandler.hpp"
 #include "Instructions.hpp"
 #include "EventLooker.hpp"
+#include <Json2Xml/Option.hpp>
 
 #ifndef __json2xml_KeyHandler_hpp__
 #define __json2xml_KeyHandler_hpp__
@@ -18,12 +19,14 @@ namespace json2xml {
      class KeyHandler: public _ObjectHandler {
 
      public:
-	  KeyHandler(const Event);
+	  KeyHandler(const Option&,
+		     const Event);
 
 	  virtual Instructions handle(TagHistory&,
 				      PlaceLooker&,
 				      const Argument = "") const override;
      private:
+	  const Option& option;
 	  const Event previous;
 
 	  Instructions prev_undef(TagHistory&,
@@ -60,7 +63,8 @@ namespace json2xml {
 						const Argument) const;
 	  Instructions
 	  prev_objectend_in_array(TagHistory&,
-				  const PlaceLooker::count_t) const;
+				  const PlaceLooker::count_t,
+				  const Argument) const;
 	  Instructions prev_objectend_(TagHistory&) const;
 
 	  	  Instructions prev_arraystart_in_object(TagHistory&) const;

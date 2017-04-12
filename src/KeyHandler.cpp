@@ -9,7 +9,9 @@
 #include "KeyHandler.hpp"
 
 //////////////////////////////////////////////////////////////////
-json2xml::KeyHandler::KeyHandler(const Event p):
+json2xml::KeyHandler::KeyHandler(const Option& o,
+				 const Event p):
+     option(o),
      previous(p)
 {
      return;
@@ -91,7 +93,7 @@ prev_objectend(TagHistory& th,
 	  return prev_objectend_in_object(th, a);
 	  
      } else if (pl.is_array()) {
-	  return prev_objectend_in_array(th, pl.get_count());
+	  return prev_objectend_in_array(th, pl.get_count(), a);
 
      } else {
 	  return prev_objectend_(th);
@@ -216,17 +218,20 @@ prev_objectend_in_object(TagHistory& th,
 
 json2xml::Instructions json2xml::KeyHandler::   
 prev_objectend_in_array(TagHistory& th,
-			const PlaceLooker::count_t i) const {
+			const PlaceLooker::count_t i,
+			const Argument a) const {
      //
      //TODO***
      //
      Instructions is;
-     // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
-     // Instruction i2({ InstType::AV, { option.getArraysCountName(),
-     //  				      std::to_string(i) } });
-     // is.push_back(i1);
-     // is.push_back(i2);
-     // th.push(option.getArraysItemName());
+     Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV, { option.getArraysCountName(),
+				      std::to_string(i) } });
+     Instruction i3({ InstType::AV, { "name", a } });
+     is.push_back(i1);
+     is.push_back(i2);
+     is.push_back(i3);
+     th.push(option.getArraysItemName());
      return is;
 }
 
