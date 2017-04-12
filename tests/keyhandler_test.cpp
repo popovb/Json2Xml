@@ -1,6 +1,7 @@
 #include <KeyHandler.hpp>
 #include <gtest/gtest.h>
 
+/*
 TEST(keyhandler, test_01)
 {
      //
@@ -32,4 +33,21 @@ TEST(keyhandler, test_02)
      ASSERT_EQ(i0, is[0]);
      Instruction i1({ InstType::OPEN, {"kkk"} });
      ASSERT_EQ(i1, is[1]);
+}
+*/
+
+TEST(keyhandler, test_03)
+{
+     //
+     // { "key" : ...
+     //    ^
+     using namespace json2xml;
+     KeyHandler KH(Event::OBJECTSTART);
+     TagHistory TH("json");
+     PlaceLooker PL;
+     PL.set_object();
+     auto is = KH.handle(TH, PL, "TAG");
+     ASSERT_EQ(1, is.size());
+     Instruction i0({ InstType::OPEN, {"TAG"} });
+     ASSERT_EQ(i0, is[0]);
 }
