@@ -32,7 +32,8 @@ namespace json2xml {
 					const PlaceLooker&,
 					const Argument) const;
 	  Instructions prev_objectend(TagHistory&,
-				      const PlaceLooker&) const;
+				      const PlaceLooker&,
+				      const Argument) const;
 	  Instructions prev_arraystart(TagHistory&,
 				       const PlaceLooker&) const;
 	  Instructions prev_arrayend(TagHistory&,
@@ -55,7 +56,8 @@ namespace json2xml {
 						  const Argument) const;
 	  Instructions prev_objectstart_(TagHistory&) const;
 
-	  Instructions prev_objectend_in_object(TagHistory&) const;
+	  Instructions prev_objectend_in_object(TagHistory&,
+						const Argument) const;
 	  Instructions
 	  prev_objectend_in_array(TagHistory&,
 				  const PlaceLooker::count_t) const;

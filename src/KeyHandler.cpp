@@ -27,7 +27,7 @@ json2xml::KeyHandler::handle(TagHistory& th,
 	  return prev_objectstart(th, pl, a);
 	  
      case Event::OBJECTEND:
-	  return prev_objectend(th, pl);
+	  return prev_objectend(th, pl, a);
 	  
      case Event::ARRAYSTART:
 	  return prev_arraystart(th, pl);
@@ -84,9 +84,11 @@ prev_objectstart (TagHistory& th,
 }
 
 json2xml::Instructions json2xml::KeyHandler::
-prev_objectend(TagHistory& th, const PlaceLooker& pl) const {
+prev_objectend(TagHistory& th,
+	       const PlaceLooker& pl,
+	       const Argument a) const {
      if (pl.is_object()) {
-	  return prev_objectend_in_object(th);
+	  return prev_objectend_in_object(th, a);
 	  
      } else if (pl.is_array()) {
 	  return prev_objectend_in_array(th, pl.get_count());
@@ -190,9 +192,6 @@ prev_objectstart_in_object(TagHistory& th,
 json2xml::Instructions json2xml::KeyHandler::
 prev_objectstart_in_array(TagHistory&,
 			  const Argument) const {
-     //
-     //TODO
-     //
      //NOT SUPPORT
      Instructions is;
      return is;
@@ -200,23 +199,18 @@ prev_objectstart_in_array(TagHistory&,
 
 json2xml::Instructions json2xml::KeyHandler::
 prev_objectstart_(TagHistory&) const {
-     //
-     //TODO
-     //
      //NOT SUPPORT
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::KeyHandler::
-prev_objectend_in_object(TagHistory& th) const {
-     //
-     //TODO
-     //
+prev_objectend_in_object(TagHistory& th,
+			 const Argument a) const {
      Instructions is;
-     // Instruction i({ InstType::OPEN, { option.getDefaultName() } });
-     // is.push_back(i);
-     // th.push(option.getDefaultName());
+     Instruction i({ InstType::OPEN, { a } });
+     is.push_back(i);
+     th.push(a);
      return is;
 }
 
@@ -224,7 +218,7 @@ json2xml::Instructions json2xml::KeyHandler::
 prev_objectend_in_array(TagHistory& th,
 			const PlaceLooker::count_t i) const {
      //
-     //TODO
+     //TODO***
      //
      Instructions is;
      // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
