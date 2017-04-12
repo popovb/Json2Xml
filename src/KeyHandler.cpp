@@ -125,8 +125,9 @@ prev_arrayend(TagHistory& th,
 	  return prev_arrayend_in_object(th, a);
 	  
      } else if (pl.is_array()) {
-	  return prev_arrayend_in_array(th, pl.get_count());
-
+	  return prev_arrayend_in_array(th,
+					pl.get_count(),
+					a);
      } else {
 	  return prev_arrayend_(th);
      }
@@ -287,24 +288,24 @@ prev_arrayend_in_object(TagHistory& th,
 
 json2xml::Instructions json2xml::KeyHandler::
 prev_arrayend_in_array(TagHistory& th,
-		       const PlaceLooker::count_t i) const {
-     //
-     //TODO***
-     //
+		       const PlaceLooker::count_t i,
+		       const Argument a) const {
      Instructions is;
-     // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
-     // Instruction i2({ InstType::AV, { option.getArraysCountName(),
-     // 				      std::to_string(i) } });
-     // is.push_back(i1);
-     // is.push_back(i2);
-     // th.push(option.getArraysItemName());
+     Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV, { option.getArraysCountName(),
+				      std::to_string(i) } });
+     Instruction i3({ InstType::AV, { "name", a } });
+     is.push_back(i1);
+     is.push_back(i2);
+     is.push_back(i3);
+     th.push(option.getArraysItemName());
      return is;
 }
 
 json2xml::Instructions json2xml::KeyHandler::     
 prev_arrayend_(TagHistory&) const {
      //
-     //TODO
+     //TODO***
      //
      //NOT SUPPORT
      Instructions is;
