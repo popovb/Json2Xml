@@ -333,18 +333,19 @@ json2xml::Instructions json2xml::ValueHandler::
 prev_arrayend_in_array(TagHistory& th,
 		       const PlaceLooker::count_t i,
 		       const Argument a) const {
-     //
-     //TODO***
-     //
      Instructions is;
-     // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
-     // Instruction i2({ InstType::AV, { option.getArraysCountName(),
-     // 				      std::to_string(i) } });
-     // Instruction i3({ InstType::AV, { "name", a } });
-     // is.push_back(i1);
-     // is.push_back(i2);
-     // is.push_back(i3);
-     // th.push(option.getArraysItemName());
+     Instruction i1({ InstType::OPEN,
+		      { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV,
+		      { option.getArraysCountName(), std::to_string(i) } });
+     Instruction i3({ InstType::TEXT,
+		      { a } });
+     Instruction i4({ InstType::CLOSE,
+		      { option.getArraysItemName() } });
+     is.push_back(i1);
+     is.push_back(i2);
+     is.push_back(i3);
+     is.push_back(i4);
      return is;
 }
 
