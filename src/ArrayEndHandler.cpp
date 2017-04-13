@@ -14,13 +14,12 @@ json2xml::ArrayEndHandler::ArrayEndHandler() {
 }
 
 json2xml::Instructions
-json2xml::ArrayEndHandler::handle(TagHistory&,
+json2xml::ArrayEndHandler::handle(TagHistory& th,
 				  PlaceLooker&,
 				  const Argument) const {
-     //
-     //TODO
-     //
-     Instructions i;
-     return i;
+     Instructions is;
+     Instruction i({ InstType::CLOSE, { th.pop() } });
+     is.push_back(i);
+     return is;
 }
 //////////////////////////////////////////////////////////////////
