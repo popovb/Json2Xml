@@ -192,3 +192,29 @@ TEST(valuehandler, test_08)
      ASSERT_EQ(i2, is[0]);
      ASSERT_EQ(i3, is[1]);
 }
+
+TEST(valuehandler, test_09)
+{
+     //
+     // { "value" "value"
+     //           ^
+     using namespace json2xml;
+     Option O;
+     ValueHandler VH(O, Event::VALUE);
+     TagHistory TH("json");
+     TH.push("item");
+     PlaceLooker PL;
+     PL.set_object();
+     PL++;
+     PL++;
+     PL++;
+     PL++;
+     auto is = VH.handle(TH, PL, "009");
+     ASSERT_EQ(3, is.size());
+     Instruction i0({ InstType::OPEN, {"json"} });
+     Instruction i1({ InstType::TEXT, {"009"} });
+     Instruction i2({ InstType::CLOSE, {"json"} });
+     ASSERT_EQ(i0, is[0]);
+     ASSERT_EQ(i1, is[1]);
+     ASSERT_EQ(i2, is[2]);
+}
