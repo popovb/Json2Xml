@@ -381,10 +381,7 @@ prev_key_in_array(TagHistory& th,
 json2xml::Instructions json2xml::ValueHandler::          
 prev_key_(TagHistory&, const
 	  Argument) const {
-     //
-     //TODO***
-     //
-     // //NOT SUPPORT
+     //NOT SUPPORT
      Instructions is;
      return is;
 }
@@ -392,13 +389,16 @@ prev_key_(TagHistory&, const
 json2xml::Instructions json2xml::ValueHandler::          
 prev_value_in_object(TagHistory& th,
 		     const Argument a) const {
-     //
-     //TODO
-     //
      Instructions is;
-     // Instruction i({ InstType::OPEN, { a } });
-     // is.push_back(i);
-     // th.push(a);
+     Instruction i0({ InstType::OPEN,
+		      { option.getDefaultName() } });
+     Instruction i1({ InstType::TEXT,
+		      { a } });
+     Instruction i2({ InstType::CLOSE,
+		      { option.getDefaultName() } });
+     is.push_back(i0);
+     is.push_back(i1);
+     is.push_back(i2);
      return is;
 }
 
@@ -407,7 +407,7 @@ prev_value_in_array(TagHistory& th,
 		    const Argument a,
 		    const PlaceLooker::count_t i) const {
      //
-     //TODO
+     //TODO**
      //
      Instructions is;
      // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
