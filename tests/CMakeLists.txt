@@ -50,6 +50,7 @@ add_executable(converter_test
   ${SourceDir}/KeyHandler.cpp
   ${SourceDir}/ValueHandler.cpp
   ${SourceDir}/PlaceLooker.cpp
+  ${SourceDir}/TestHandler.cpp
   )
 
 target_link_libraries(converter_test
