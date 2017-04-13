@@ -48,7 +48,7 @@ json2xml::ObjectHandlerFabric::make(EventLooker& el) const {
 	  return std::make_unique<KeyHandler>(option, el.previous());
 
      case Event::VALUE:
-	  return std::make_unique<ValueHandler>(option);
+	  return std::make_unique<ValueHandler>(option, el.previous());
 
      default:
 	  return std::make_unique<ObjectNullHandler>();
