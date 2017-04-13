@@ -368,13 +368,13 @@ prev_key_in_object(TagHistory& th,
 }
 
 json2xml::Instructions json2xml::ValueHandler::          
-prev_key_in_array(TagHistory&,
-		  const Argument) const { 
-     //
-     //TODO
-     //
-     // //NOT SUPPORT
+prev_key_in_array(TagHistory& th,
+		  const Argument a) const {
      Instructions is;
+     Instruction i3({ InstType::TEXT, { a } });
+     Instruction i4({ InstType::CLOSE, { th.pop() } });
+     is.push_back(i3);
+     is.push_back(i4);
      return is;
 }
 
@@ -382,7 +382,7 @@ json2xml::Instructions json2xml::ValueHandler::
 prev_key_(TagHistory&, const
 	  Argument) const {
      //
-     //TODO
+     //TODO***
      //
      // //NOT SUPPORT
      Instructions is;
