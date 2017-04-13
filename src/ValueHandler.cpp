@@ -46,33 +46,7 @@ json2xml::ValueHandler::handle(TagHistory& th,
      default:
 	  return dflt(th, pl);
      }
-     /*
-     Instructions is;
-     if (pl.is_array()) {
-	  Instruction i1({ InstType::OPEN,
-			   { option.getArraysItemName() } });
-	  Instruction i2({ InstType::AV,
-			   { option.getArraysCountName(),
-			     std::to_string(pl.get_count()) } });
-	  Instruction i3({ InstType::TEXT, { v } });
-	  Instruction i4({ InstType::CLOSE,
-			   { option.getArraysItemName() } });
-	  is.push_back(i1);
-	  is.push_back(i2);
-	  is.push_back(i3);
-	  is.push_back(i4);
-
-     } else {
-	  Instruction i({ InstType::TEXT, { v } });
-	  is.push_back(i);
-     }
-     //
-     //TODO
-     //
-     return is;
-     */
 }
-
 
 json2xml::Instructions json2xml::ValueHandler::
 prev_undef (TagHistory& th, const PlaceLooker& pl) const {
@@ -206,7 +180,7 @@ prev_undef_(TagHistory&) const {
 }
 
 json2xml::Instructions json2xml::ValueHandler::
-prev_objectstart_in_object(TagHistory& th,
+prev_objectstart_in_object(TagHistory&,
 			   const Argument a) const {
      Instructions is;
      Instruction i0({ InstType::OPEN,
@@ -237,7 +211,7 @@ prev_objectstart_(TagHistory&) const {
 }
 
 json2xml::Instructions json2xml::ValueHandler::
-prev_objectend_in_object(TagHistory& th,
+prev_objectend_in_object(TagHistory&,
 			 const Argument a) const {
      Instructions is;
      Instruction i0({ InstType::OPEN,
@@ -253,7 +227,7 @@ prev_objectend_in_object(TagHistory& th,
 }
 
 json2xml::Instructions json2xml::ValueHandler::   
-prev_objectend_in_array(TagHistory& th,
+prev_objectend_in_array(TagHistory&,
 			const PlaceLooker::count_t i,
 			const Argument a) const {
      Instructions is;
@@ -287,7 +261,7 @@ prev_arraystart_in_object(TagHistory&) const {
 }
 
 json2xml::Instructions json2xml::ValueHandler::        
-prev_arraystart_in_array(TagHistory& th,
+prev_arraystart_in_array(TagHistory&,
 			 const PlaceLooker::count_t i,
 			 const Argument a) const {
      Instructions is;
@@ -314,7 +288,7 @@ prev_arraystart_(TagHistory&) const {
 }
 
 json2xml::Instructions json2xml::ValueHandler::
-prev_arrayend_in_object(TagHistory& th,
+prev_arrayend_in_object(TagHistory&,
 			const Argument a) const {
      Instructions is;
      Instruction i0({ InstType::OPEN,
@@ -330,7 +304,7 @@ prev_arrayend_in_object(TagHistory& th,
 }
 
 json2xml::Instructions json2xml::ValueHandler::
-prev_arrayend_in_array(TagHistory& th,
+prev_arrayend_in_array(TagHistory&,
 		       const PlaceLooker::count_t i,
 		       const Argument a) const {
      Instructions is;
@@ -387,7 +361,7 @@ prev_key_(TagHistory&, const
 }
      
 json2xml::Instructions json2xml::ValueHandler::          
-prev_value_in_object(TagHistory& th,
+prev_value_in_object(TagHistory&,
 		     const Argument a) const {
      Instructions is;
      Instruction i0({ InstType::OPEN,
@@ -403,31 +377,29 @@ prev_value_in_object(TagHistory& th,
 }
 
 json2xml::Instructions json2xml::ValueHandler::               
-prev_value_in_array(TagHistory& th,
+prev_value_in_array(TagHistory&,
 		    const Argument a,
 		    const PlaceLooker::count_t i) const {
-     //
-     //TODO**
-     //
      Instructions is;
-     // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
-     // Instruction i2({ InstType::AV, { option.getArraysCountName(),
-     // 				      std::to_string(i) } });
-     // Instruction i3({ InstType::AV, { "name", a } });
-     // is.push_back(i1);
-     // is.push_back(i2);
-     // is.push_back(i3);
-     // th.push(option.getArraysItemName());
+     Instruction i1({ InstType::OPEN,
+		      { option.getArraysItemName() } });
+     Instruction i2({ InstType::AV,
+		      { option.getArraysCountName(), std::to_string(i) } });
+     Instruction i3({ InstType::TEXT,
+		      { a } });
+     Instruction i4({ InstType::CLOSE,
+		      { option.getArraysItemName() } });
+     is.push_back(i1);
+     is.push_back(i2);
+     is.push_back(i3);
+     is.push_back(i4);
      return is;
 }
 
 json2xml::Instructions json2xml::ValueHandler::                    
 prev_value_(TagHistory&,
 	    const Argument) const {
-     //
-     //TODO
-     //
-     // //NOT SUPPORT
+     //NOT SUPPORT
      Instructions is;
      return is;
 }
