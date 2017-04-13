@@ -224,20 +224,14 @@ prev_objectstart_in_object(TagHistory& th,
 json2xml::Instructions json2xml::ValueHandler::
 prev_objectstart_in_array(TagHistory&,
 			  const Argument) const {
-     //
-     //TODO***
-     //
-     // //NOT SUPPORT
+     //NOT SUPPORT
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::ValueHandler::
 prev_objectstart_(TagHistory&) const {
-     //
-     //TODO
-     //
-     // //NOT SUPPORT
+     //NOT SUPPORT
      Instructions is;
      return is;
 }
@@ -245,13 +239,16 @@ prev_objectstart_(TagHistory&) const {
 json2xml::Instructions json2xml::ValueHandler::
 prev_objectend_in_object(TagHistory& th,
 			 const Argument a) const {
-     //
-     //TODO
-     //
      Instructions is;
-     // Instruction i({ InstType::OPEN, { a } });
-     // is.push_back(i);
-     // th.push(a);
+     Instruction i0({ InstType::OPEN,
+		      { option.getDefaultName() } });
+     Instruction i1({ InstType::TEXT,
+		      { a } });
+     Instruction i2({ InstType::CLOSE,
+		      { option.getDefaultName() } });
+     is.push_back(i0);
+     is.push_back(i1);
+     is.push_back(i2);
      return is;
 }
 
