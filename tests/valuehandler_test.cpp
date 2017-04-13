@@ -42,3 +42,28 @@ TEST(valuehandler, test_02)
      ASSERT_EQ(i1, is[1]);
      ASSERT_EQ(i2, is[2]);
 }
+
+TEST(valuehandler, test_03)
+{
+     //
+     // [ ...} "value"...
+     //        ^
+     using namespace json2xml;
+     Option O;
+     ValueHandler VH(O, Event::OBJECTEND);
+     TagHistory TH("json");
+     PlaceLooker PL;
+     PL.set_array();
+     PL++;
+     PL++;
+     auto is = VH.handle(TH, PL, "003");
+     ASSERT_EQ(4, is.size());
+     Instruction i0({ InstType::OPEN, {"item"} });
+     Instruction i1({ InstType::AV, {"n", "2"} });
+     Instruction i2({ InstType::TEXT, {"003"} });
+     Instruction i3({ InstType::CLOSE, {"item"} });
+     ASSERT_EQ(i0, is[0]);
+     ASSERT_EQ(i1, is[1]);
+     ASSERT_EQ(i2, is[2]);
+     ASSERT_EQ(i3, is[3]);
+}
