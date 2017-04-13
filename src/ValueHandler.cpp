@@ -180,39 +180,27 @@ prev_value(TagHistory& th, const PlaceLooker& pl,
 
 json2xml::Instructions json2xml::ValueHandler::
 dflt(TagHistory&, const PlaceLooker&) const {
-     //
-     //TODO
-     //
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::ValueHandler::
 prev_undef_in_object(TagHistory&) const {
-     //
-     //TODO
-     //
-     // //NOT SUPPORT
+     //NOT SUPPORT
      Instructions is;
      return is;
 }
 
 json2xml::Instructions json2xml::ValueHandler::
 prev_undef_in_array(TagHistory&) const {
-     //
-     //TODO
-     //
-     // //NOT SUPPORT
+     //NOT SUPPORT
      Instructions is;
      return is;
 }
      
 json2xml::Instructions json2xml::ValueHandler::
 prev_undef_(TagHistory&) const {
-     //
-     //TODO
-     //
-     // //NOT SUPPORT
+     //NOT SUPPORT
      Instructions is;
      return is;
 }
@@ -221,12 +209,15 @@ json2xml::Instructions json2xml::ValueHandler::
 prev_objectstart_in_object(TagHistory& th,
 			   const Argument a) const {
      Instructions is;
-     //
-     //TODO
-     //
-     // Instruction i({ InstType::OPEN, { a } });
-     // is.push_back(i);
-     // th.push(a);
+     Instruction i0({ InstType::OPEN,
+		      { option.getDefaultName() } });
+     Instruction i1({ InstType::TEXT,
+		      { a } });
+     Instruction i2({ InstType::CLOSE,
+		      { option.getDefaultName() } });
+     is.push_back(i0);
+     is.push_back(i1);
+     is.push_back(i2);
      return is;
 }
 
@@ -234,7 +225,7 @@ json2xml::Instructions json2xml::ValueHandler::
 prev_objectstart_in_array(TagHistory&,
 			  const Argument) const {
      //
-     //TODO
+     //TODO***
      //
      // //NOT SUPPORT
      Instructions is;
