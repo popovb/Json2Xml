@@ -22,15 +22,6 @@ json2xml::ObjectEndHandler::handle(TagHistory& th,
      Instructions is;
      Instruction i({ InstType::CLOSE, { th.pop() } });
      is.push_back(i);
-
-     if (previous == Event::OBJECTSTART)
-	  return is;
-
-     if (previous == Event::OBJECTEND)
-	  return is;
-
-     Instruction i2({ InstType::CLOSE, { th.pop() } });
-     is.push_back(i2);
      return is;
 }
 //////////////////////////////////////////////////////////////////
