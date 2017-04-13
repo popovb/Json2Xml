@@ -224,3 +224,20 @@ target_link_libraries(keyhandler_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(valuehandler_test
+  valuehandler_test.cpp
+  ${SourceDir}/ValueHandler.cpp
+  ${SourceDir}/TagHistory.cpp
+  ${SourceDir}/Option.cpp
+  ${SourceDir}/PlaceLooker.cpp
+  ${SourceDir}/Instructions.cpp
+  )
+
+target_link_libraries(valuehandler_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
