@@ -316,13 +316,16 @@ prev_arraystart_(TagHistory&) const {
 json2xml::Instructions json2xml::ValueHandler::
 prev_arrayend_in_object(TagHistory& th,
 			const Argument a) const {
-     //
-     //TODO***
-     //
      Instructions is;
-     // Instruction i({ InstType::OPEN, { a } });
-     // is.push_back(i);
-     // th.push(a);
+     Instruction i0({ InstType::OPEN,
+		      { option.getDefaultName() } });
+     Instruction i1({ InstType::TEXT,
+		      { a } });
+     Instruction i2({ InstType::CLOSE,
+		      { option.getDefaultName() } });
+     is.push_back(i0);
+     is.push_back(i1);
+     is.push_back(i2);
      return is;
 }
 
@@ -331,7 +334,7 @@ prev_arrayend_in_array(TagHistory& th,
 		       const PlaceLooker::count_t i,
 		       const Argument a) const {
      //
-     //TODO
+     //TODO***
      //
      Instructions is;
      // Instruction i1({ InstType::OPEN, { option.getArraysItemName() } });
