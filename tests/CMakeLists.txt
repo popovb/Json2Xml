@@ -41,6 +41,15 @@ add_executable(converter_test
   ${SourceDir}/ConvertHandler.cpp
   ${SourceDir}/EventLooker.cpp
   ${SourceDir}/TagHistory.cpp
+  ${SourceDir}/ObjectHandlerFabric.cpp
+  ${SourceDir}/ObjectStartHandler.cpp
+  ${SourceDir}/ObjectEndHandler.cpp
+  ${SourceDir}/ArrayStartHandler.cpp
+  ${SourceDir}/ArrayEndHandler.cpp
+  ${SourceDir}/RegularWorker.cpp
+  ${SourceDir}/KeyHandler.cpp
+  ${SourceDir}/ValueHandler.cpp
+  ${SourceDir}/PlaceLooker.cpp
   )
 
 target_link_libraries(converter_test
