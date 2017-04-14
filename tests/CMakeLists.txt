@@ -51,6 +51,10 @@ add_executable(converter_test
   ${SourceDir}/ValueHandler.cpp
   ${SourceDir}/PlaceLooker.cpp
   ${SourceDir}/TestHandler.cpp
+  ${SourceDir}/PrettyXMLHandler.cpp
+  ${SourceDir}/Shifter.cpp
+  ${SourceDir}/TagBuilder.cpp
+  ${SourceDir}/AVBuilder.cpp
   )
 
 target_link_libraries(converter_test
