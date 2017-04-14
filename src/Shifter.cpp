@@ -11,25 +11,26 @@
 
 //////////////////////////////////////////////////////////////////
 json2xml::Shifter::Shifter(const size_t u):
-     n(u)
+     n(u),
+     pos(0)
 {
      return;
 }
 
 json2xml::Shifter& json2xml::Shifter::operator++(const int) {
-     n++;
+     pos++;
      return *this;
 }
 
 json2xml::Shifter& json2xml::Shifter::operator--(const int) {
-     n--;
+     pos--;
      return *this;
 }
 
 json2xml::String json2xml::Shifter::get() const {
      std::stringstream ss;
-     for (size_t i = 0; i < n; i++)
-	  ss << " ";
+     for (size_t i = 0; i < pos; i++)
+	  for (size_t j = 0; j < n; j++) ss << " ";
      return ss.str();
 }
 //////////////////////////////////////////////////////////////////

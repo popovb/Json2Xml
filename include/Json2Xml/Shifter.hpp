@@ -24,7 +24,8 @@ namespace json2xml {
 	  String get() const;
 
      private:
-	  size_t n;
+	  const size_t n;
+	  size_t pos;
      };
 //////////////////////////////////////////////////////////////////
 }
