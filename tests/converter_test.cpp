@@ -126,3 +126,70 @@ C[root]
 )-";
      ASSERT_EQ(ETALON, TH.get());
 }
+
+TEST(converter, test_06)
+{
+     using namespace json2xml;
+     std::ifstream in("first_test_07.json");
+     Option O("root", "default");
+     Converter C(O);
+     TestHandler TH("\n");
+     ASSERT_TRUE(C.convert(in, TH));
+     std::string ETALON = R"-(O[root]
+O[x]
+O[item]
+A[n][1]
+T[1]
+C[item]
+O[item]
+A[n][2]
+T[2]
+C[item]
+O[item]
+A[n][3]
+T[3]
+C[item]
+O[item]
+A[n][4]
+O[item]
+A[n][1]
+T[4]
+C[item]
+O[item]
+A[n][2]
+T[5]
+C[item]
+O[item]
+A[n][3]
+T[6]
+C[item]
+O[item]
+A[n][4]
+O[item]
+A[n][1]
+T[7]
+C[item]
+O[item]
+A[n][2]
+T[8]
+C[item]
+O[item]
+A[n][3]
+T[9]
+C[item]
+C[item]
+C[item]
+C[x]
+O[y]
+O[a]
+O[b]
+O[c]
+T[d]
+C[c]
+C[b]
+C[a]
+C[y]
+C[root]
+)-";
+     ASSERT_EQ(ETALON, TH.get());
+}
