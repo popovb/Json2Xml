@@ -2,7 +2,9 @@
 #include <Json2Xml/Option.hpp>
 #include <Json2Xml/NullHandler.hpp>
 #include <Json2Xml/TestHandler.hpp>
+#include <Json2Xml/PrettyXMLHandler.hpp>
 #include <fstream>
+#include <sstream>
 #include <gtest/gtest.h>
 
 TEST(converter, test_01)
@@ -192,4 +194,63 @@ C[y]
 C[root]
 )-";
      ASSERT_EQ(ETALON, TH.get());
+}
+
+TEST(converter, test_07)
+{
+     using namespace json2xml;
+     std::ifstream in("first_test_07.json");
+     Option O("root", "default");
+     Converter C(O);
+
+     std::stringstream ss;
+     PrettyXMLHandler TH(ss, "\n", 2);
+
+     ASSERT_TRUE(C.convert(in, TH));
+     std::string ETALON = R"-(<root>
+  <x>
+    <item n="1">
+      1
+    </item>
+    <item n="2">
+      2
+    </item>
+    <item n="3">
+      3
+    </item>
+    <item n="4">
+      <item n="1">
+        4
+      </item>
+      <item n="2">
+        5
+      </item>
+      <item n="3">
+        6
+      </item>
+      <item n="4">
+        <item n="1">
+          7
+        </item>
+        <item n="2">
+          8
+        </item>
+        <item n="3">
+          9
+        </item>
+      </item>
+    </item>
+  </x>
+  <y>
+    <a>
+      <b>
+        <c>
+          d
+        </c>
+      </b>
+    </a>
+  </y>
+</root>
+)-";
+     ASSERT_EQ(ETALON, ss.str());
 }
