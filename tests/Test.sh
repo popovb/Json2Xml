@@ -13,4 +13,5 @@
 ./valuehandler_test       &&
 ./converthandler_test     &&
 ./converter_test          &&
+./avbuilder_test          &&
 ./handler_test

@@ -255,3 +255,16 @@ target_link_libraries(valuehandler_test
   pthread
   )
 ##################################################################
+
+##################################################################
+add_executable(avbuilder_test
+  avbuilder_test.cpp
+  ${SourceDir}/AVBuilder.cpp
+  )
+
+target_link_libraries(avbuilder_test
+  gtest_main
+  gtest
+  pthread
+  )
+##################################################################
