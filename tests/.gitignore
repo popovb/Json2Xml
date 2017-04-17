@@ -18,4 +18,5 @@ objectendhandler_test
 keyhandler_test
 arraystarthandler_test
 valuehandler_test
+avbuilder_test
 
