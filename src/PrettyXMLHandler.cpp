@@ -8,6 +8,7 @@
 
 #include <Json2Xml/PrettyXMLHandler.hpp>
 #include "TagBuilder.hpp"
+#include "Encoder.hpp"
 
 //////////////////////////////////////////////////////////////////
 json2xml::PrettyXMLHandler::PrettyXMLHandler(std::ostream& s,
@@ -16,38 +17,41 @@ json2xml::PrettyXMLHandler::PrettyXMLHandler(std::ostream& s,
      stream(s),
      ld(l),
      shifter(sz),
-     builder(new TagBuilder)
+     builder(new TagBuilder),
+     encoder(new Encoder)
 {
      return;
 }
 
 json2xml::PrettyXMLHandler::~PrettyXMLHandler() {
+     if (encoder != nullptr) delete encoder;
      if (builder != nullptr) delete builder;
 }
 
 void json2xml::PrettyXMLHandler::Text(const String s) {
      previousTag();
      stream << shifter.get();
-     stream << s;
+     stream << encoder->encode(s);
      stream << ld;
 }
 
 void json2xml::PrettyXMLHandler::OpenTag(const String s) {
      previousTag();
-     builder->buildOpenTag(s);
+     builder->buildOpenTag(encoder->encode(s));
 }
 
 void json2xml::PrettyXMLHandler::CloseTag(const String s) {
      previousTag();
      shifter--;
      stream << shifter.get();
-     stream << builder->getCloseTag(s);
+     stream << builder->getCloseTag(encoder->encode(s));
      stream << ld;
 }
 
 void json2xml::PrettyXMLHandler::AttributeValue(const String s1,
 						const String s2) {
-     builder->setAttributeValue(s1, s2);
+     builder->setAttributeValue(encoder->encode(s1),
+				encoder->encode(s2));
 }
 
 void json2xml::PrettyXMLHandler::previousTag() {

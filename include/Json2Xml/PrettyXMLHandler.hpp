@@ -10,8 +10,8 @@
 #include "Shifter.hpp"
 #include <iostream>
 
-#ifndef __PrettyXMLHandler_hpp__
-#define __PrettyXMLHandler_hpp__
+#ifndef __json2xml_PrettyXMLHandler_hpp__
+#define __json2xml_PrettyXMLHandler_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
@@ -20,6 +20,7 @@ namespace json2xml {
 
 //////////////////////////////////////////////////////////////////
      class TagBuilder;
+     class Encoder;
      class PrettyXMLHandler: public Handler {
 
      public:
@@ -38,9 +39,10 @@ namespace json2xml {
 	  const LineDelimiter ld;
 	  Shifter shifter;
 	  TagBuilder* builder;
+	  Encoder* encoder;
 
 	  void previousTag();
      };
 //////////////////////////////////////////////////////////////////
 }
-#endif // __PrettyXMLHandler_hpp__
+#endif // __json2xml_PrettyXMLHandler_hpp__
