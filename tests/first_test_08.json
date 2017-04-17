@@ -1,0 +1,7 @@
+{
+    "num_1" : "some'text",
+    "num_2" : "some\"text",
+    "num_3" : "some<text",
+    "num_4" : "some>text",
+    "num_5" : "some&text",
+}

@@ -254,3 +254,33 @@ TEST(converter, test_07)
 )-";
      ASSERT_EQ(ETALON, ss.str());
 }
+
+TEST(converter, test_08)
+{
+     using namespace json2xml;
+     std::ifstream in("first_test_08.json");
+     Option O("root", "default");
+     Converter C(O);
+     std::stringstream ss;
+     PrettyXMLHandler TH(ss, "\n", 2);
+     ASSERT_TRUE(C.convert(in, TH));
+     std::string ETALON = R"-(<root>
+  <num_1>
+    some&apos;text
+  </num_1>
+  <num_2>
+    some&quot;text
+  </num_2>
+  <num_3>
+    some&lt;text
+  </num_3>
+  <num_4>
+    some&gt;text
+  </num_4>
+  <num_5>
+    some&amp;text
+  </num_5>
+</root>
+)-";
+     ASSERT_EQ(ETALON, ss.str());
+}

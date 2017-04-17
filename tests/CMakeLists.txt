@@ -55,6 +55,8 @@ add_executable(converter_test
   ${SourceDir}/Shifter.cpp
   ${SourceDir}/TagBuilder.cpp
   ${SourceDir}/AVBuilder.cpp
+  ${SourceDir}/Encoder.cpp
+  ${SourceDir}/myXML_Mirroring.cpp
   )
 
 target_link_libraries(converter_test
