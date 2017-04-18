@@ -6,24 +6,18 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#include "Program.hpp"
-#include "ArgProcessor.hpp"
-#include "Conv.hpp"
-#include <iostream>
-#include <exception>
+// #include <string>
+// #include <list>
+// #include <tuple>
+
+#ifndef __Program__
+#define __Program__
 
 //////////////////////////////////////////////////////////////////
-int main(int argc, char** argv) {
-     Program p;
-     ArgProcessor ap(p);
-     try {
-	  auto config = ap.process(argc, argv);
-	  Conv c;
-	  c.run(config);
-     } catch (std::exception& e) {
-	  std::cerr << e.what() << std::endl;
-	  return 1;
-     }
-     return 0;
-}
+//using String = std::string;
+class Program {
+     
+public:
+};
 //////////////////////////////////////////////////////////////////
+#endif // __Program__

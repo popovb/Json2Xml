@@ -7,23 +7,18 @@
 //
 
 #include "Program.hpp"
-#include "ArgProcessor.hpp"
-#include "Conv.hpp"
-#include <iostream>
-#include <exception>
+#include "Config.hpp"
+
+#ifndef __ArgProcessor__
+#define __ArgProcessor__
 
 //////////////////////////////////////////////////////////////////
-int main(int argc, char** argv) {
-     Program p;
-     ArgProcessor ap(p);
-     try {
-	  auto config = ap.process(argc, argv);
-	  Conv c;
-	  c.run(config);
-     } catch (std::exception& e) {
-	  std::cerr << e.what() << std::endl;
-	  return 1;
-     }
-     return 0;
-}
+class ArgProcessor {
+     
+public:
+     ArgProcessor(const Program&);
+
+     Config process(int, char**) const;
+};
 //////////////////////////////////////////////////////////////////
+#endif // __ArgProcessor__
