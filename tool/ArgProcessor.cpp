@@ -6,22 +6,19 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#include "Program.hpp"
-#include "Config.hpp"
-
-#ifndef __ArgProcessor__
-#define __ArgProcessor__
+#include "ArgProcessor.hpp"
 
 //////////////////////////////////////////////////////////////////
-class ArgProcessor {
-     
-public:
-     ArgProcessor(const Program&);
+ArgProcessor::ArgProcessor(const Program& p):
+     programm(p)
+{
+     return;
+}
 
-     Config process(int, char**) const;
-
-private:
-     const Program& programm;
-};
+Config ArgProcessor::process(int, char**) const {
+     //
+     //TODO
+     //
+     return Config();
+}
 //////////////////////////////////////////////////////////////////
-#endif // __ArgProcessor__
