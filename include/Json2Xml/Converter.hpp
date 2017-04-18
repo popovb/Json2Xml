@@ -10,8 +10,8 @@
 #include "Handler.hpp"
 #include <istream>
 
-#ifndef __Converter_hpp__
-#define __Converter_hpp__
+#ifndef __json2xml_Converter_hpp__
+#define __json2xml_Converter_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
@@ -27,4 +27,4 @@ namespace json2xml {
      };
 //////////////////////////////////////////////////////////////////
 }
-#endif // __Converter_hpp__
+#endif // __json2xml_Converter_hpp__

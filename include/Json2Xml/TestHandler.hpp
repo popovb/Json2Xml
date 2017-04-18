@@ -9,8 +9,8 @@
 #include "Handler.hpp"
 #include <sstream>
 
-#ifndef __TestHandler_hpp__
-#define __TestHandler_hpp__
+#ifndef __json2xml_TestHandler_hpp__
+#define __json2xml_TestHandler_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
@@ -47,4 +47,4 @@ namespace json2xml {
      };
 //////////////////////////////////////////////////////////////////
 }
-#endif // __TestHandler_hpp__
+#endif // __json2xml_TestHandler_hpp__

@@ -8,8 +8,8 @@
 
 #include "Handler.hpp"
 
-#ifndef __NullHandler_hpp__
-#define __NullHandler_hpp__
+#ifndef __json2xml_NullHandler_hpp__
+#define __json2xml_NullHandler_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
@@ -24,4 +24,4 @@ namespace json2xml {
      };
 //////////////////////////////////////////////////////////////////
 }
-#endif // __NullHandler_hpp__
+#endif // __json2xml_NullHandler_hpp__

@@ -8,8 +8,8 @@
 
 #include "String.hpp"
 
-#ifndef __Option_hpp__
-#define __Option_hpp__
+#ifndef __json2xml_Option_hpp__
+#define __json2xml_Option_hpp__
 
 namespace json2xml {
 //////////////////////////////////////////////////////////////////
@@ -41,4 +41,4 @@ namespace json2xml {
      };
 //////////////////////////////////////////////////////////////////
 }
-#endif // __Option_hpp__
+#endif // __json2xml_Option_hpp__
