@@ -6,16 +6,13 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#include "Config.hpp"
-
-#ifndef __Conv__
-#define __Conv__
+#include "Conv.hpp"
 
 //////////////////////////////////////////////////////////////////
-class Conv {
-     
-public:
-     void run(const Config&) const;
-};
+void Conv::run(const Config&) const {
+     //
+     //TODO
+     //
+     return;
+}
 //////////////////////////////////////////////////////////////////
-#endif // __Conv__
