@@ -6,8 +6,8 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#include "Config.hpp"
 #include "Format.hpp"
+#include "String.hpp"
 
 #ifndef __FormatBuilder__
 #define __FormatBuilder__
@@ -16,7 +16,22 @@
 class FormatBuilder {
      
 public:
-     Format build(const Config&) const;
+     template <class CFG>
+     Format build(const CFG& c) const {
+	  Format f;
+	  auto fc = c.getFormats();
+	  if (fc.count(DELIMITER)) {
+	       f.set_delimiter(fc[DELIMITER]);
+	  }
+	  if (fc.count(SHIFT)) {
+	       f.set_shift(fc[SHIFT]);
+	  }
+	  return f;
+     }
+
+private:
+     const String DELIMITER = "delimiter";
+     const String SHIFT     = "shift_width";
 };
 //////////////////////////////////////////////////////////////////
 #endif // __FormatBuilder__
