@@ -17,6 +17,9 @@ class Format {
 public:
      String delimiter() const;
      size_t shift() const;
+
+     void set_delimiter(const String);
+     void set_shift(const String);
 };
 //////////////////////////////////////////////////////////////////
 #endif // __Format__
