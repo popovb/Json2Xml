@@ -20,12 +20,15 @@ public:
      using val_t = String;
      using section = std::map<arg_t, val_t>;
      using TagNames = section;
+     using Formats = section;
 
 public:
      TagNames& getTagNames() const;
+     Formats& getFormats() const;
 
 private:
      TagNames tn;
+     Formats fm;
 };
 //////////////////////////////////////////////////////////////////
 #endif // __Config__
