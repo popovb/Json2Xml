@@ -21,14 +21,17 @@ public:
      using section = std::map<arg_t, val_t>;
      using TagNames = section;
      using Formats = section;
+     using Streams = section;
 
 public:
      TagNames& getTagNames() const;
      Formats& getFormats() const;
+     Streams& getStreams() const;
 
 private:
      TagNames tn;
      Formats fm;
+     Streams st;
 };
 //////////////////////////////////////////////////////////////////
 #endif // __Config__
