@@ -7,6 +7,7 @@
 //
 
 #include <Json2Xml/Option.hpp>
+#include "String.hpp"
 
 #ifndef __OptionBuilder__
 #define __OptionBuilder__
@@ -19,20 +20,26 @@ public:
      json2xml::Option build(const CFG& c) const {
 	  json2xml::Option o;
 	  auto tg = c.getTagNames();
-	  if (tg.count("root_name")) {
-	       o.setRootName(tg["root_name"]);
+	  if (tg.count(ROOT_NAME)) {
+	       o.setRootName(tg[ROOT_NAME]);
 	  }
-	  if (tg.count("default_name")) {
-	       o.setDefaultName(tg["default_name"]);
+	  if (tg.count(DEFAULT_NAME)) {
+	       o.setDefaultName(tg[DEFAULT_NAME]);
 	  }
-	  if (tg.count("arrays_item_name")) {
-	       o.setArraysItemName(tg["arrays_item_name"]);
+	  if (tg.count(ARRAYS_ITEM_NAME)) {
+	       o.setArraysItemName(tg[ARRAYS_ITEM_NAME]);
 	  }
-	  if (tg.count("arrays_count_name")) {
-	       o.setArraysCountName(tg["arrays_count_name"]);
+	  if (tg.count(ARRAYS_COUNT_NAME)) {
+	       o.setArraysCountName(tg[ARRAYS_COUNT_NAME]);
 	  }
 	  return o;
      }
+
+private:
+     const String ROOT_NAME         = "root_name";
+     const String DEFAULT_NAME      = "default_name";
+     const String ARRAYS_ITEM_NAME  = "arrays_item_name";
+     const String ARRAYS_COUNT_NAME = "arrays_count_name";
 };
 //////////////////////////////////////////////////////////////////
 #endif // __OptionBuilder__
