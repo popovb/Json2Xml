@@ -6,6 +6,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
+#include "String.hpp"
 #include <ostream>
 #include <istream>
 
@@ -14,10 +15,18 @@
 
 //////////////////////////////////////////////////////////////////
 class Stream {
+
+public:
+     using FileName = String;
      
 public:
      std::ostream& out() const;
      std::istream& in() const;
+
+     void set_input(const FileName);
+     void set_output(const FileName);
+
+     void open();
 };
 //////////////////////////////////////////////////////////////////
 #endif // __Stream__
