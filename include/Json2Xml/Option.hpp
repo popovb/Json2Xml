@@ -33,6 +33,11 @@ namespace json2xml {
 	  ArraysItemName getArraysItemName() const;
 	  ArraysCountName getArraysCountName() const;
 
+	  void setRootName(const RootName);
+	  void setDefaultName(const DefaultName);
+	  void setArraysItemName(const ArraysItemName);
+	  void setArraysCountName(const ArraysCountName);
+
      private:
 	  const RootName rn;
 	  const DefaultName dn;
