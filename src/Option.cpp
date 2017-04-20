@@ -38,4 +38,20 @@ json2xml::ArraysCountName
 json2xml::Option::getArraysCountName() const {
      return acn;
 }
+
+void json2xml::Option::setRootName(const RootName s) {
+     rn = s;
+}
+
+void json2xml::Option::setDefaultName(const DefaultName s) {
+     dn = s;
+}
+
+void json2xml::Option::setArraysItemName(const ArraysItemName s) {
+     ain = s;
+}
+
+void json2xml::Option::setArraysCountName(const ArraysCountName s) {
+     acn = s;
+}
 //////////////////////////////////////////////////////////////////
