@@ -14,12 +14,17 @@
 #define __Stream__
 
 //////////////////////////////////////////////////////////////////
+class MyStreamOut;
+class MyStreamIn;
 class Stream {
 
 public:
      using FileName = String;
      
 public:
+     Stream();
+     ~Stream();
+
      std::ostream& out() const;
      std::istream& in() const;
 
@@ -27,6 +32,20 @@ public:
      void set_output(const FileName);
 
      void open();
+
+private:
+     MyStreamIn* input;
+     MyStreamOut* output;
+
+     void kill_in();
+     void kill_out();
+
+     template <class Obj> void kill(Obj* obj) {
+	  if (obj != nullptr) {
+	       obj->close();
+	       delete obj;
+	  }
+     }
 };
 //////////////////////////////////////////////////////////////////
 #endif // __Stream__
