@@ -15,11 +15,17 @@
 class Format {
      
 public:
+     Format();
+
      String delimiter() const;
      size_t shift() const;
 
      void set_delimiter(const String);
      void set_shift(const String);
+
+private:
+     size_t shift_size;
+     String delimiter_str;
 };
 //////////////////////////////////////////////////////////////////
 #endif // __Format__
