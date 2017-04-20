@@ -25,9 +25,12 @@ target_include_directories(json2xml
 
 add_executable(Json2Xml
   ${tool_sources}
-  ${json2xml}
   )
 
 target_include_directories(Json2Xml
   PRIVATE "${IncludeDir}"
+  )
+
+target_link_libraries(Json2Xml
+  json2xml
   )
