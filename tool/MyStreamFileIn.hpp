@@ -7,24 +7,25 @@
 //
 
 #include "MyStreamIn.hpp"
-#include "String.hpp"
+#include "File.hpp"
+#include <fstream>
 
 #ifndef __MyStreamFileIn__
 #define __MyStreamFileIn__
 
 //////////////////////////////////////////////////////////////////
-class MyStreamFileIn: public MyStreamIn {
+class MyStreamFileIn: public MyStreamIn, public File {
 
 public:
-     using FileName = String;
-
-public:
-     MyStreamFileIn(const FileName);
+     MyStreamFileIn(const File::Name);
      virtual ~MyStreamFileIn();
 
      virtual void open() override;
      virtual void close() override;
      virtual std::istream& get() const override;
+
+protected:
+     std::ifstream stream;
 };
 //////////////////////////////////////////////////////////////////
 #endif // __MyStreamFileIn__
