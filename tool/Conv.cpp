@@ -15,7 +15,7 @@
 #include <stdexcept>
 
 //////////////////////////////////////////////////////////////////
-void Conv::run(const Config& cfg) const {
+void Conv::run(Config& cfg) const {
      OptionBuilder ob;
      auto o = ob.build(cfg);
      FormatBuilder fb;

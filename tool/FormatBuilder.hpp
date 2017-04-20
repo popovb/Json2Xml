@@ -17,7 +17,7 @@ class FormatBuilder {
      
 public:
      template <class CFG>
-     Format build(const CFG& c) const {
+     Format build(CFG& c) const {
 	  Format f;
 	  auto fc = c.getFormats();
 	  if (fc.count(DELIMITER)) {

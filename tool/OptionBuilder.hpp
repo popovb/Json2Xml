@@ -17,9 +17,9 @@ class OptionBuilder {
      
 public:
      template <class CFG>
-     json2xml::Option build(const CFG& c) const {
+     json2xml::Option build(CFG& c) const {
 	  json2xml::Option o;
-	  auto tg = c.getTagNames();
+	  Config::TagNames& tg = c.getTagNames();
 	  if (tg.count(ROOT_NAME)) {
 	       o.setRootName(tg[ROOT_NAME]);
 	  }

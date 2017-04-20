@@ -17,7 +17,7 @@ class StreamBuilder {
      
 public:
      template <class CFG>
-     Stream build(const CFG& c) const {
+     Stream build(CFG& c) const {
 	  Stream s;
 	  auto ss = c.getStreams();
 	  if (ss.count(INPUT)) {

@@ -15,7 +15,7 @@
 class Conv {
      
 public:
-     void run(const Config&) const;
+     void run(Config&) const;
 };
 //////////////////////////////////////////////////////////////////
 #endif // __Conv__
