@@ -24,9 +24,9 @@ public:
      using Streams = section;
 
 public:
-     TagNames& getTagNames() const;
-     Formats& getFormats() const;
-     Streams& getStreams() const;
+     TagNames& getTagNames();
+     Formats& getFormats();
+     Streams& getStreams();
 
 private:
      TagNames tn;
