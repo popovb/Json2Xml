@@ -7,23 +7,25 @@
 //
 
 #include "MyStreamOut.hpp"
+#include "File.hpp"
+#include <fstream>
 
 #ifndef __MyStreamFileOut__
 #define __MyStreamFileOut__
 
 //////////////////////////////////////////////////////////////////
-class MyStreamFileOut: public MyStreamOut {
+class MyStreamFileOut: public MyStreamOut, public File {
 
 public:
-     using FileName = String;
-
-public:
-     MyStreamFileOut(const FileName);
+     MyStreamFileOut(const File::Name);
      virtual ~MyStreamFileOut();
 
      virtual void open() override;
      virtual void close() override;
      virtual std::ostream& get() const override;
+
+protected:
+     std::ofstream stream;
 };
 //////////////////////////////////////////////////////////////////
 #endif // __MyStreamFileOut__
