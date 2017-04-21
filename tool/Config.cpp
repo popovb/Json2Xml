@@ -29,6 +29,10 @@ void Config::toFormats(const arg_t a, const val_t v) {
      to(fm, a, v);
 }
 
+void Config::toTagNames(const arg_t a, const val_t v) {
+     to(tn, a, v);
+}
+
 void Config::to(section& s, const arg_t a, const val_t v) {
      s[a] = v;
 }

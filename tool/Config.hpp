@@ -30,6 +30,7 @@ public:
 
      void toStreams(const arg_t, const val_t);
      void toFormats(const arg_t, const val_t);
+     void toTagNames(const arg_t, const val_t);
 
 private:
      TagNames tn;
