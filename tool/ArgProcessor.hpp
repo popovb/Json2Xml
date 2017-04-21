@@ -21,7 +21,7 @@ public:
      Config process(int, char**) const;
 
 private:
-     const Program& programm;
+     const Program& program;
 };
 //////////////////////////////////////////////////////////////////
 #endif // __ArgProcessor__

@@ -13,7 +13,7 @@
 
 //////////////////////////////////////////////////////////////////
 ArgProcessor::ArgProcessor(const Program& p):
-     programm(p)
+     program(p)
 {
      return;
 }
@@ -21,12 +21,8 @@ ArgProcessor::ArgProcessor(const Program& p):
 Config ArgProcessor::process(int argc, char** argv) const {
      Config Cfg;
      using namespace args;
-
-     //TODO                 vvvvvvvvvvvvvvvvvvvvvvvv
-     ArgumentParser parser("This is a test program.",
-			   "This goes after the options.");
-     //TODO                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+     ArgumentParser parser(program.description,
+			   program.copyright);
      HelpFlag help(parser,
 		   "help",
 		   "display this help menu",
@@ -81,9 +77,7 @@ Config ArgProcessor::process(int argc, char** argv) const {
      }
 
      if (version) {
-	  //
-	  //TODO
-	  //
+	  std::cout << program.version << std::endl;
 	  exit(0);
      }
 
