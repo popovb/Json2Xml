@@ -28,10 +28,14 @@ public:
      Formats& getFormats();
      Streams& getStreams();
 
+     void toStreams(const arg_t, const val_t);
+
 private:
      TagNames tn;
      Formats fm;
      Streams st;
+
+     void to(section&, const arg_t, const val_t);
 };
 //////////////////////////////////////////////////////////////////
 #endif // __Config__

@@ -20,4 +20,12 @@ Config::Formats& Config::getFormats() {
 Config::Streams& Config::getStreams() {
      return st;
 }
+
+void Config::toStreams(const arg_t a, const val_t v) {
+     to(st, a, v);
+}
+
+void Config::to(section& s, const arg_t a, const val_t v) {
+     s[a] = v;
+}
 //////////////////////////////////////////////////////////////////
