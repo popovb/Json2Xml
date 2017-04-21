@@ -20,7 +20,9 @@ MyStreamFileIn::~MyStreamFileIn() {
 }
 
 void MyStreamFileIn::open() {
-     stream.open(name);
+     stream.open(name,
+		 std::ios_base::in |
+		 std::ios_base::binary);
      good(stream);
 }
 

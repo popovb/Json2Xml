@@ -20,7 +20,9 @@ MyStreamFileOut::~MyStreamFileOut() {
 }
 
 void MyStreamFileOut::open() {
-     stream.open(name);
+     stream.open(name,
+		 std::ios_base::out |
+		 std::ios_base::binary);
      good(stream);
 }
 
